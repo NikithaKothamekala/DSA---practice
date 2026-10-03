@@ -1,0 +1,887 @@
+Absolutely 👍 Here are your **Day 3 DSA GitHub-ready notes**, keeping your preferred large divider after every program.
+
+# 🧩 DSA — Day 3
+
+## 📚 Topics Covered
+
+1. Count Positive Elements
+2. Sum of Positive Elements
+3. Count Negative Elements
+4. Sum of Negative Elements
+5. Find Largest Positive Element
+6. Find Smallest Positive Element
+7. Count Elements Greater Than 5
+8. Sum Elements Greater Than 5
+9. Find Largest Element Greater Than 0
+10. Count Even Elements
+
+---
+
+# 1️⃣ Count Positive Elements
+
+### 📌 Problem
+
+Count how many positive numbers are present in an array.
+
+### 💻 Code
+
+```java
+package p2;
+
+public class CountPosElements {
+
+    public static void main(String[] args) {
+
+        int[] arr = {-2, 5, -7, 8, 0, 3, -1};
+        int count = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+
+            if (arr[i] > 0) {
+                count++;
+            }
+        }
+
+        System.out.println("Count = " + count);
+    }
+}
+```
+
+### 📤 Output
+
+```text
+Count = 3
+```
+
+### 🔍 Dry Run
+
+```text
+-2 → skip
+ 5 → count = 1
+-7 → skip
+ 8 → count = 2
+ 0 → skip
+ 3 → count = 3
+-1 → skip
+```
+
+### 🧠 Pattern
+
+```java
+if (arr[i] > 0) {
+    count++;
+}
+```
+
+### ⏱️ Complexity
+
+* Time: `O(n)`
+* Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 2️⃣ Sum of Positive Elements
+
+### 📌 Problem
+
+Find the sum of all positive elements in an array.
+
+### 💻 Code
+
+```java
+package p2;
+
+public class SumOfPosEle {
+
+    public static void main(String[] args) {
+
+        int[] arr = {-2, 5, -7, 8, 0, 3, -1};
+        int sum = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+
+            if (arr[i] > 0) {
+                sum = sum + arr[i];
+            }
+        }
+
+        System.out.println("Sum = " + sum);
+    }
+}
+```
+
+### 📤 Output
+
+```text
+Sum = 16
+```
+
+### 🔍 Dry Run
+
+```text
+-2 → skip
+ 5 → sum = 5
+-7 → skip
+ 8 → sum = 13
+ 0 → skip
+ 3 → sum = 16
+-1 → skip
+```
+
+### 🧠 Pattern
+
+```java
+if (arr[i] > 0) {
+    sum = sum + arr[i];
+}
+```
+
+### ⏱️ Complexity
+
+* Time: `O(n)`
+* Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 3️⃣ Count Negative Elements
+
+### 📌 Problem
+
+Count how many negative numbers are present in an array.
+
+### 💻 Code
+
+```java
+package p2;
+
+public class CountNegNum {
+
+    public static void main(String[] args) {
+
+        int[] arr = {-2, 5, -7, 8, 0, 3, -1};
+        int count = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+
+            if (arr[i] < 0) {
+                count++;
+            }
+        }
+
+        System.out.println("Count = " + count);
+    }
+}
+```
+
+### 📤 Output
+
+```text
+Count = 3
+```
+
+### 🔍 Dry Run
+
+```text
+-2 → count = 1
+ 5 → skip
+-7 → count = 2
+ 8 → skip
+ 0 → skip
+ 3 → skip
+-1 → count = 3
+```
+
+### 🧠 Important
+
+```java
+arr[i] < 0
+```
+
+means the element is negative.
+
+### ⏱️ Complexity
+
+* Time: `O(n)`
+* Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 4️⃣ Sum of Negative Elements
+
+### 📌 Problem
+
+Find the sum of all negative elements.
+
+### 💻 Code
+
+```java
+package p2;
+
+public class SumOfNegNum {
+
+    public static void main(String[] args) {
+
+        int[] arr = {-2, 5, -7, 8, 0, 3, -1};
+        int sum = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+
+            if (arr[i] < 0) {
+                sum = sum + arr[i];
+            }
+        }
+
+        System.out.println("Sum = " + sum);
+    }
+}
+```
+
+### 📤 Output
+
+```text
+Sum = -10
+```
+
+### 🔍 Dry Run
+
+```text
+-2 → sum = -2
+ 5 → skip
+-7 → sum = -9
+ 8 → skip
+ 0 → skip
+ 3 → skip
+-1 → sum = -10
+```
+
+### 🧠 Important
+
+When adding negative numbers, the sum naturally becomes negative.
+
+```text
+-2 + (-7) + (-1) = -10
+```
+
+### ⏱️ Complexity
+
+* Time: `O(n)`
+* Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 5️⃣ Find Largest Positive Element
+
+### 📌 Problem
+
+Find the largest positive element in an array.
+
+### 💻 Code
+
+```java
+package p2;
+
+public class LargestPosEle {
+
+    public static void main(String[] args) {
+
+        int[] arr = {-2, 5, -7, 8, 0, 3, -1};
+        int largest = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+
+            if (arr[i] > 0) {
+
+                if (arr[i] > largest) {
+                    largest = arr[i];
+                }
+            }
+        }
+
+        System.out.println("Largest = " + largest);
+    }
+}
+```
+
+### 📤 Output
+
+```text
+Largest = 8
+```
+
+### 🔍 Dry Run
+
+```text
+-2 → negative → skip
+ 5 → positive → largest = 5
+-7 → skip
+ 8 → 8 > 5 → largest = 8
+ 0 → skip
+ 3 → 3 < 8 → keep 8
+-1 → skip
+```
+
+### 🧠 Pattern
+
+```java
+if (arr[i] > 0) {
+    if (arr[i] > largest) {
+        largest = arr[i];
+    }
+}
+```
+
+### ✨ Shorter Version
+
+The two conditions can be combined:
+
+```java
+if (arr[i] > 0 && arr[i] > largest) {
+    largest = arr[i];
+}
+```
+
+### ⏱️ Complexity
+
+* Time: `O(n)`
+* Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 6️⃣ Find Smallest Positive Element
+
+### 📌 Problem
+
+Find the smallest positive element in an array.
+
+### 💻 Code
+
+```java
+package p2;
+
+public class SmallestPosEle {
+
+    public static void main(String[] args) {
+
+        int[] arr = {-2, 5, -7, 8, 0, 3, -1};
+        int smallest = 9;
+
+        for (int i = 0; i < arr.length; i++) {
+
+            if (arr[i] > 0) {
+
+                if (arr[i] < smallest) {
+                    smallest = arr[i];
+                }
+            }
+        }
+
+        System.out.println("Smallest = " + smallest);
+    }
+}
+```
+
+### 📤 Output
+
+```text
+Smallest = 3
+```
+
+### 🔍 Dry Run
+
+Positive elements:
+
+```text
+5, 8, 3
+```
+
+Comparison:
+
+```text
+5 < 9 → smallest = 5
+8 < 5 → false
+3 < 5 → smallest = 3
+```
+
+### 🧠 Important
+
+For a general integer array, a safer initialization is:
+
+```java
+int smallest = Integer.MAX_VALUE;
+```
+
+We used `9` here because the positive values in this particular exercise are single-digit numbers.
+
+### ⏱️ Complexity
+
+* Time: `O(n)`
+* Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 7️⃣ Count Elements Greater Than 5
+
+### 📌 Problem
+
+Count how many elements are greater than `5`.
+
+### 💻 Code
+
+```java
+package p2;
+
+public class CountEleGreaterThan5 {
+
+    public static void main(String[] args) {
+
+        int[] arr = {-2, 5, -7, 8, 0, 3, -1};
+        int count = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+
+            if (arr[i] > 5) {
+                count++;
+            }
+        }
+
+        System.out.println("Count = " + count);
+    }
+}
+```
+
+### 📤 Output
+
+```text
+Count = 1
+```
+
+### 🔍 Dry Run
+
+```text
+-2 → no
+ 5 → no
+-7 → no
+ 8 → yes → count = 1
+ 0 → no
+ 3 → no
+-1 → no
+```
+
+### 🧠 Important Difference
+
+```java
+arr[i] > 5
+```
+
+means **strictly greater than 5**.
+
+Therefore:
+
+```text
+5 → ❌
+6 → ✅
+```
+
+If the condition were:
+
+```java
+arr[i] >= 5
+```
+
+then `5` would also be included.
+
+### ⏱️ Complexity
+
+* Time: `O(n)`
+* Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 8️⃣ Sum Elements Greater Than 5
+
+### 📌 Problem
+
+Find the sum of all elements greater than `5`.
+
+### 💻 Code
+
+```java
+package p2;
+
+public class SumEleGreaterThan5 {
+
+    public static void main(String[] args) {
+
+        int[] arr = {-2, 5, -7, 8, 0, 3, -1};
+        int sum = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+
+            if (arr[i] > 5) {
+                sum = sum + arr[i];
+            }
+        }
+
+        System.out.println("Sum = " + sum);
+    }
+}
+```
+
+### 📤 Output
+
+```text
+Sum = 8
+```
+
+### 🔍 Dry Run
+
+```text
+-2 → skip
+ 5 → skip
+-7 → skip
+ 8 → sum = 8
+ 0 → skip
+ 3 → skip
+-1 → skip
+```
+
+### 🧠 Pattern
+
+```java
+if (condition) {
+    sum = sum + arr[i];
+}
+```
+
+### ⏱️ Complexity
+
+* Time: `O(n)`
+* Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 9️⃣ Find Largest Element Greater Than 0
+
+### 📌 Problem
+
+Find the largest element that is greater than `0`.
+
+### 💻 Code
+
+```java
+package p2;
+
+public class LargestEleGreaterThan0 {
+
+    public static void main(String[] args) {
+
+        int[] arr = {-2, 5, -7, 8, 0, 3, -1};
+        int largest = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+
+            if (arr[i] > 0 && arr[i] > largest) {
+                largest = arr[i];
+            }
+        }
+
+        System.out.println("Largest = " + largest);
+    }
+}
+```
+
+### 📤 Output
+
+```text
+Largest = 8
+```
+
+### 🧠 Understanding `&&`
+
+Both conditions must be true:
+
+```java
+arr[i] > 0
+```
+
+AND
+
+```java
+arr[i] > largest
+```
+
+Therefore:
+
+```java
+if (arr[i] > 0 && arr[i] > largest)
+```
+
+### 🔍 Dry Run
+
+```text
+5 → positive and > 0 → largest = 5
+8 → positive and > 5 → largest = 8
+3 → positive but < 8 → unchanged
+```
+
+### ⏱️ Complexity
+
+* Time: `O(n)`
+* Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 🔟 Count Even Elements
+
+### 📌 Problem
+
+Count how many even numbers are present in the array.
+
+### 💻 Code
+
+```java
+package p2;
+
+public class CountEvenEle {
+
+    public static void main(String[] args) {
+
+        int[] arr = {-2, 5, -7, 8, 0, 3, -1};
+        int count = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+
+            if (arr[i] % 2 == 0) {
+                count++;
+            }
+        }
+
+        System.out.println("Count = " + count);
+    }
+}
+```
+
+### 📤 Output
+
+```text
+Count = 3
+```
+
+### 🔍 Dry Run
+
+```text
+-2 → even → count = 1
+ 5 → odd
+-7 → odd
+ 8 → even → count = 2
+ 0 → even → count = 3
+ 3 → odd
+-1 → odd
+```
+
+### 🧠 Even Number Condition
+
+```java
+arr[i] % 2 == 0
+```
+
+Examples:
+
+```text
+8 % 2 = 0 → Even
+6 % 2 = 0 → Even
+5 % 2 = 1 → Odd
+```
+
+### ⏱️ Complexity
+
+* Time: `O(n)`
+* Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 🧠 Day 3 DSA — Important Patterns
+
+## 1. Array Traversal
+
+The basic pattern used throughout Day 3:
+
+```java
+for (int i = 0; i < arr.length; i++) {
+    // process arr[i]
+}
+```
+
+Remember:
+
+```java
+arr.length
+```
+
+gives the number of elements in the array.
+
+---
+
+## 2. Conditional Counting
+
+```java
+int count = 0;
+
+for (int i = 0; i < arr.length; i++) {
+    if (condition) {
+        count++;
+    }
+}
+```
+
+Used for:
+
+* Positive elements
+* Negative elements
+* Even elements
+* Elements greater than a value
+
+---
+
+## 3. Conditional Sum
+
+```java
+int sum = 0;
+
+for (int i = 0; i < arr.length; i++) {
+    if (condition) {
+        sum = sum + arr[i];
+    }
+}
+```
+
+---
+
+## 4. Find Maximum
+
+```java
+if (arr[i] > largest) {
+    largest = arr[i];
+}
+```
+
+---
+
+## 5. Find Minimum
+
+```java
+if (arr[i] < smallest) {
+    smallest = arr[i];
+}
+```
+
+---
+
+## 6. Even Number
+
+```java
+arr[i] % 2 == 0
+```
+
+---
+
+## 7. Positive Number
+
+```java
+arr[i] > 0
+```
+
+---
+
+## 8. Negative Number
+
+```java
+arr[i] < 0
+```
+
+---
+
+## 9. Combining Conditions
+
+Use `&&` when **both conditions must be true**:
+
+```java
+if (arr[i] > 0 && arr[i] > largest) {
+    largest = arr[i];
+}
+```
+
+---
+
+# 🎯 Interview Takeaways
+
+Day 3 focused on one of the most important beginner DSA patterns:
+
+```text
+Array
+  ↓
+Traverse every element
+  ↓
+Check a condition
+  ↓
+Count / Sum / Compare
+```
+
+Many interview questions are variations of this pattern.
+
+### Common variations
+
+```text
+Count positive numbers
+Count negative numbers
+Count even numbers
+Count numbers > X
+Sum positive numbers
+Sum negative numbers
+Find maximum positive number
+Find minimum positive number
+```
+
+The **logic changes only slightly**, while the underlying pattern remains the same.
+
+---
+
+# 🏆 Day 3 DSA Summary
+
+```text
+Programs Completed: 10/10
+
+Main Data Structure:
+Array
+
+Main Technique:
+Array Traversal
+
+Main Loop:
+for loop
+
+Main Operations:
+Count
+Sum
+Maximum
+Minimum
+Condition Checking
+```
+
+### ⭐ Skills gained
+
+```text
+Array Traversal
+      ↓
+Condition Checking
+      ↓
+Counting
+      ↓
+Summation
+      ↓
+Maximum / Minimum
+      ↓
+Combined Conditions
+```
+
+# 🎉 DSA Day 3 — COMPLETE ✅
