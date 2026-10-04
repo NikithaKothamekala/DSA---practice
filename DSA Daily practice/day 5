@@ -1,0 +1,1072 @@
+Absolutely. Here are your **Day 5 DSA GitHub-ready notes**. I’ve included the **concept, code, output, dry run, key points, complexity, and interview tips**, with your requested separator after every program.
+
+# 🧠 DSA Day 5 — Arrays: Searching & Manipulation
+
+## 📚 Topics Covered
+
+1. Find an Element in an Array
+2. Find the Index of an Element
+3. Count Occurrences of an Element
+4. Find the Largest Element
+5. Find the Smallest Element
+6. Find the Second Largest Element
+7. Reverse an Array
+8. Find the Sum of Elements at Even Indexes
+9. Find the Largest Element at an Even Index
+10. Find the Smallest Element at an Odd Index
+
+---
+
+# 1️⃣ Find an Element in an Array
+
+### 🎯 Problem
+
+Given an array and a target element, check whether the target exists.
+
+### 💻 Code
+
+```java
+package p3;
+
+public class FindEleInArray {
+
+    public static void main(String[] args) {
+
+        int[] arr = {10, 25, 7, 40, 15};
+        int target = 40;
+
+        boolean found = false;
+
+        for(int i = 0; i < arr.length; i++) {
+
+            if(arr[i] == target) {
+                found = true;
+            }
+        }
+
+        if(found) {
+            System.out.println("Element Found");
+        }
+        else {
+            System.out.println("Element Not Found");
+        }
+    }
+}
+```
+
+### 📤 Output
+
+```text
+Element Found
+```
+
+### 🧠 Logic
+
+Initially:
+
+```java
+boolean found = false;
+```
+
+We assume the element is not present.
+
+When we find it:
+
+```java
+if(arr[i] == target) {
+    found = true;
+}
+```
+
+Then `found` becomes `true`.
+
+### 🔍 Dry Run
+
+```text
+Array = {10, 25, 7, 40, 15}
+Target = 40
+
+10 == 40 → false
+25 == 40 → false
+7  == 40 → false
+40 == 40 → true
+15 == 40 → false
+```
+
+Final:
+
+```text
+found = true
+```
+
+### ⭐ Interview Tip
+
+This is called **Linear Search**.
+
+The array is checked one element at a time.
+
+### ⏱ Complexity
+
+- Time: `O(n)`
+- Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 2️⃣ Find the Index of an Element
+
+### 🎯 Problem
+
+Find the index of the target element.
+
+### 💻 Code
+
+```java
+package p3;
+
+public class IndexOfElement {
+
+    public static void main(String[] args) {
+
+        int[] arr = {10, 25, 7, 40, 15};
+        int target = 7;
+
+        int index = -1;
+
+        for(int i = 0; i < arr.length; i++) {
+
+            if(arr[i] == target) {
+                index = i;
+            }
+        }
+
+        System.out.println("Element Found At Index = " + index);
+    }
+}
+```
+
+### 📤 Output
+
+```text
+Element Found At Index = 2
+```
+
+### 🧠 Important Concept
+
+```java
+int index = -1;
+```
+
+`-1` means:
+
+> Element has not been found.
+
+Why `-1`?
+
+Because valid array indexes start from `0`.
+
+```text
+0 → valid
+1 → valid
+2 → valid
+...
+-1 → not found
+```
+
+### 🔍 Dry Run
+
+```text
+Index:   0   1   2   3   4
+Value:  10  25   7  40  15
+
+Target = 7
+
+i = 0 → 10 ≠ 7
+i = 1 → 25 ≠ 7
+i = 2 → 7 == 7
+
+index = 2
+```
+
+### 🧠 Important
+
+```text
+i       → index
+arr[i]  → value
+```
+
+### ⏱ Complexity
+
+- Time: `O(n)`
+- Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 3️⃣ Count Occurrences of an Element
+
+### 🎯 Problem
+
+Count how many times the target appears.
+
+### 💻 Code
+
+```java
+package p3;
+
+public class OccurenceOfAnElement {
+
+    public static void main(String[] args) {
+
+        int[] arr = {2, 5, 2, 7, 2, 9};
+        int target = 2;
+
+        int count = 0;
+
+        for(int i = 0; i < arr.length; i++) {
+
+            if(arr[i] == target) {
+                count++;
+            }
+        }
+
+        System.out.println("Occurences = " + count);
+    }
+}
+```
+
+### 📤 Output
+
+```text
+Occurences = 3
+```
+
+### 🔍 Dry Run
+
+```text
+Array = {2, 5, 2, 7, 2, 9}
+Target = 2
+
+2 → count = 1
+5 → no
+2 → count = 2
+7 → no
+2 → count = 3
+9 → no
+```
+
+Final:
+
+```text
+count = 3
+```
+
+### 🧠 Memory Trick
+
+> **If I find what I'm looking for → count it.**
+
+Basic pattern:
+
+```java
+int count = 0;
+
+if(condition) {
+    count++;
+}
+```
+
+### ⏱ Complexity
+
+- Time: `O(n)`
+- Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 4️⃣ Find the Largest Element
+
+### 🎯 Problem
+
+Find the largest element in an array.
+
+### 💻 Code
+
+```java
+package p3;
+
+public class LargestEle {
+
+    public static void main(String[] args) {
+
+        int[] arr = {10, 25, 7, 40, 15};
+
+        int largest = Integer.MIN_VALUE;
+
+        for(int i = 0; i < arr.length; i++) {
+
+            if(arr[i] > largest) {
+                largest = arr[i];
+            }
+        }
+
+        System.out.println("Largest = " + largest);
+    }
+}
+```
+
+### 📤 Output
+
+```text
+Largest = 40
+```
+
+### 🔍 Dry Run
+
+```text
+largest = -∞
+
+10 > -∞ → largest = 10
+25 > 10 → largest = 25
+7  > 25 → no
+40 > 25 → largest = 40
+15 > 40 → no
+```
+
+Final:
+
+```text
+largest = 40
+```
+
+### 🧠 Important
+
+Using:
+
+```java
+Integer.MIN_VALUE
+```
+
+is safer than using `0`.
+
+For example:
+
+```java
+int[] arr = {-10, -25, -7};
+```
+
+The largest value is `-7`.
+
+### 🧠 Memory Trick
+
+> **Largest wants `>`**
+
+```java
+if(arr[i] > largest)
+```
+
+### ⏱ Complexity
+
+- Time: `O(n)`
+- Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 5️⃣ Find the Smallest Element
+
+### 🎯 Problem
+
+Find the smallest element.
+
+### 💻 Code
+
+```java
+package p3;
+
+public class SmallestEleInArray {
+
+    public static void main(String[] args) {
+
+        int[] arr = {10, 25, 7, 40, 15};
+
+        int smallest = Integer.MAX_VALUE;
+
+        for(int i = 0; i < arr.length; i++) {
+
+            if(arr[i] < smallest) {
+                smallest = arr[i];
+            }
+        }
+
+        System.out.println("Smallest = " + smallest);
+    }
+}
+```
+
+### 📤 Output
+
+```text
+Smallest = 7
+```
+
+### 🧠 Important
+
+Use:
+
+```java
+Integer.MAX_VALUE
+```
+
+as the starting value.
+
+### 🧠 Memory Trick
+
+> **Smallest wants `<`**
+
+```java
+if(arr[i] < smallest)
+```
+
+### 🔄 Remember the Pair
+
+```text
+Largest:
+MIN_VALUE + >
+
+Smallest:
+MAX_VALUE + <
+```
+
+### ⏱ Complexity
+
+- Time: `O(n)`
+- Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 6️⃣ Find the Second Largest Element
+
+### 🎯 Problem
+
+Find the second largest element without sorting.
+
+### 💻 Code
+
+```java
+package p3;
+
+public class SecondLargestEle {
+
+    public static void main(String[] args) {
+
+        int[] arr = {10, 25, 7, 40, 15};
+
+        int largest = Integer.MIN_VALUE;
+        int secondLargest = Integer.MIN_VALUE;
+
+        for(int i = 0; i < arr.length; i++) {
+
+            if(arr[i] > largest) {
+
+                secondLargest = largest;
+                largest = arr[i];
+            }
+        }
+
+        System.out.println(
+            "Second Largest = " + secondLargest
+        );
+    }
+}
+```
+
+### 📤 Output
+
+```text
+Second Largest = 25
+```
+
+### 🔍 Dry Run
+
+```text
+10 → L = 10, S = -∞
+
+25 → L = 25, S = 10
+
+7  → no change
+
+40 → L = 40, S = 25
+
+15 → no change
+```
+
+Final:
+
+```text
+largest = 40
+secondLargest = 25
+```
+
+### 🧠 Important Pattern
+
+When a new largest appears:
+
+```java
+secondLargest = largest;
+largest = arr[i];
+```
+
+Think:
+
+> **New champion arrives → old champion becomes second.**
+
+### ⚠️ Note
+
+This basic version assumes the problem is asking for the second-largest position/value in the usual distinct-value setting. Handling duplicates requires an additional condition.
+
+### ⏱ Complexity
+
+- Time: `O(n)`
+- Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 7️⃣ Reverse an Array
+
+### 🎯 Problem
+
+Print an array in reverse order.
+
+### 💻 Code
+
+```java
+package p3;
+
+public class ReverseAnArray {
+
+    public static void main(String[] args) {
+
+        int[] arr = {10, 20, 30, 40, 50};
+
+        for(int i = arr.length - 1; i >= 0; i--) {
+
+            System.out.print(arr[i] + " ");
+        }
+    }
+}
+```
+
+### 📤 Output
+
+```text
+50 40 30 20 10
+```
+
+### 🔍 Dry Run
+
+```text
+Index:  0   1   2   3   4
+Value: 10  20  30  40  50
+
+i = 4 → 50
+i = 3 → 40
+i = 2 → 30
+i = 1 → 20
+i = 0 → 10
+```
+
+### 🧠 Important Concept
+
+For reverse traversal:
+
+```java
+for(int i = arr.length - 1; i >= 0; i--)
+```
+
+### ⚠️ Important Difference
+
+For sum:
+
+```java
+sum = sum + arr[i];
+```
+
+For reverse printing:
+
+```java
+System.out.print(arr[i]);
+```
+
+### 🧠 Memory Trick
+
+> **Reverse = start from the last index and move backward.**
+
+### ⏱ Complexity
+
+- Time: `O(n)`
+- Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 8️⃣ Sum of Elements at Even Indexes
+
+### 🎯 Problem
+
+Find the sum of values stored at even indexes.
+
+### 💻 Code
+
+```java
+package p3;
+
+public class SumOfEleAtEvenIndexes {
+
+    public static void main(String[] args) {
+
+        int[] arr = {10, 20, 30, 40, 50, 60};
+
+        int sum = 0;
+
+        for(int i = 0; i < arr.length; i++) {
+
+            if(i % 2 == 0) {
+                sum = sum + arr[i];
+            }
+        }
+
+        System.out.println("Sum = " + sum);
+    }
+}
+```
+
+### 📤 Output
+
+```text
+Sum = 90
+```
+
+### 🔍 Dry Run
+
+```text
+Index:   0    1    2    3    4    5
+Value:  10   20   30   40   50   60
+
+Even indexes:
+0 → 10
+2 → 30
+4 → 50
+
+10 + 30 + 50 = 90
+```
+
+### 🧠 Very Important
+
+```text
+i       → index
+arr[i]  → value
+```
+
+So:
+
+```java
+i % 2 == 0
+```
+
+checks the **index**.
+
+And:
+
+```java
+arr[i]
+```
+
+gets the **value**.
+
+### 🧠 Memory Trick
+
+> **`i` = where 📍**  
+> **`arr[i]` = what 📦**
+
+### ⏱ Complexity
+
+- Time: `O(n)`
+- Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 9️⃣ Largest Element at an Even Index
+
+### 🎯 Problem
+
+Find the largest value among elements located at even indexes.
+
+### 💻 Code
+
+```java
+package p3;
+
+public class LargestAtEvenIndex {
+
+    public static void main(String[] args) {
+
+        int[] arr = {10, 25, 30, 15, 50, 5};
+
+        int largest = Integer.MIN_VALUE;
+
+        for(int i = 0; i < arr.length; i++) {
+
+            if(i % 2 == 0 && arr[i] > largest) {
+
+                largest = arr[i];
+            }
+        }
+
+        System.out.println(
+            "Largest at even index = " + largest
+        );
+    }
+}
+```
+
+### 📤 Output
+
+```text
+Largest at even index = 50
+```
+
+### 🔍 Dry Run
+
+Only even indexes:
+
+```text
+i = 0 → 10
+i = 2 → 30
+i = 4 → 50
+```
+
+Largest:
+
+```text
+50
+```
+
+### 🧠 Important Pattern
+
+We combine two conditions:
+
+```java
+i % 2 == 0
+```
+
+→ even index
+
+and:
+
+```java
+arr[i] > largest
+```
+
+→ larger value
+
+Together:
+
+```java
+if(i % 2 == 0 && arr[i] > largest)
+```
+
+### 🧠 Interview Pattern
+
+> **Filter first → then calculate.**
+
+Here:
+
+```text
+Filter → even indexes
+Calculate → maximum
+```
+
+### ⏱ Complexity
+
+- Time: `O(n)`
+- Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 🔟 Smallest Element at an Odd Index
+
+### 🎯 Problem
+
+Find the smallest value among elements at odd indexes.
+
+### 💻 Code
+
+```java
+package p3;
+
+public class SmallestEleAtOddIndex {
+
+    public static void main(String[] args) {
+
+        int[] arr = {10, 25, 30, 15, 50, 5};
+
+        int smallest = Integer.MAX_VALUE;
+
+        for(int i = 0; i < arr.length; i++) {
+
+            if(i % 2 != 0 && arr[i] < smallest) {
+
+                smallest = arr[i];
+            }
+        }
+
+        System.out.println(
+            "Smallest at odd index = " + smallest
+        );
+    }
+}
+```
+
+### 📤 Output
+
+```text
+Smallest at odd index = 5
+```
+
+### 🔍 Dry Run
+
+Odd indexes:
+
+```text
+Index:   1    3    5
+Value:  25   15    5
+```
+
+Smallest:
+
+```text
+5
+```
+
+### 🧠 Important Pattern
+
+Odd index:
+
+```java
+i % 2 != 0
+```
+
+Smallest:
+
+```java
+arr[i] < smallest
+```
+
+Combined:
+
+```java
+if(i % 2 != 0 && arr[i] < smallest)
+```
+
+### ⏱ Complexity
+
+- Time: `O(n)`
+- Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 🧠 Day 5 DSA — Master Patterns
+
+## 1. Array Traversal
+
+The most important basic pattern:
+
+```java
+for(int i = 0; i < arr.length; i++) {
+
+    // use arr[i]
+}
+```
+
+---
+
+## 2. Index vs Value
+
+This is extremely important.
+
+```text
+i       → index / position
+arr[i]  → value
+```
+
+Example:
+
+```text
+Index:   0    1    2
+Value:  10   20   30
+```
+
+If:
+
+```java
+i = 2;
+```
+
+then:
+
+```java
+arr[i] = 30;
+```
+
+### 🧠 Memory Trick
+
+> **`i` = WHERE**  
+> **`arr[i]` = WHAT**
+
+---
+
+## 3. Search
+
+```java
+if(arr[i] == target)
+```
+
+---
+
+## 4. Count
+
+```java
+int count = 0;
+
+if(condition) {
+    count++;
+}
+```
+
+---
+
+## 5. Largest
+
+```java
+int largest = Integer.MIN_VALUE;
+
+if(arr[i] > largest) {
+    largest = arr[i];
+}
+```
+
+---
+
+## 6. Smallest
+
+```java
+int smallest = Integer.MAX_VALUE;
+
+if(arr[i] < smallest) {
+    smallest = arr[i];
+}
+```
+
+---
+
+## 7. Reverse Traversal
+
+```java
+for(int i = arr.length - 1; i >= 0; i--)
+```
+
+---
+
+## 8. Even Index
+
+```java
+i % 2 == 0
+```
+
+---
+
+## 9. Odd Index
+
+```java
+i % 2 != 0
+```
+
+---
+
+## 🔥 Combined Pattern
+
+Many DSA questions follow:
+
+```text
+FILTER → CALCULATE
+```
+
+For example:
+
+```java
+if(i % 2 == 0 && arr[i] > largest)
+```
+
+First:
+
+```text
+Filter → even indexes
+```
+
+Then:
+
+```text
+Calculate → largest
+```
+
+This pattern will become very useful as we move toward harder DSA.
+
+---
+
+# 🎯 Day 5 Interview Lessons
+
+### Remember these four patterns especially:
+
+```text
+1. Search:
+   arr[i] == target
+
+2. Largest:
+   arr[i] > largest
+
+3. Smallest:
+   arr[i] < smallest
+
+4. Count:
+   count++
+```
+
+And remember:
+
+```text
+i       → index
+arr[i]  → value
+```
+
+---
+
+# 📊 Day 5 DSA Progress
+
+| Problem | Status |
+|---|---|
+| Find an Element | ✅ |
+| Find Index | ✅ |
+| Count Occurrences | ✅ |
+| Largest Element | ✅ |
+| Smallest Element | ✅ |
+| Second Largest | ✅ |
+| Reverse Array | ✅ |
+| Sum at Even Indexes | ✅ |
+| Largest at Even Index | ✅ |
+| Smallest at Odd Index | ✅ |
+
+## 🏆 Day 5 DSA: 10/10 Complete
+
+**Main improvement today:** You moved from needing corrections on basic search/index logic to independently combining conditions such as:
+
+```java
+i % 2 == 0 && arr[i] > largest
+```
+
+That's an important step toward actual problem-solving rather than just syntax practice.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
