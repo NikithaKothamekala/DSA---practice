@@ -1,0 +1,824 @@
+Absolutely. 🔥 Here are your **Day 6 DSA GitHub-ready notes** with explanations, code, dry runs, complexity, interview tips, and the important patterns you learned.
+
+# 🚀 DAY 6 — DSA
+## 📌 Topic: Frequency & Duplicate Elements in Arrays
+
+---
+
+## 🧠 What We Learned Today
+
+Today we focused on **frequency counting, duplicates, unique elements, and nested loops**.
+
+### Main pattern:
+
+```java
+for(int i = 0; i < arr.length; i++) {
+    int count = 0;
+
+    for(int j = 0; j < arr.length; j++) {
+        if(arr[i] == arr[j]) {
+            count++;
+        }
+    }
+
+    // Use count here
+}
+```
+
+### Remember:
+
+- `i` → current element we are checking
+- `j` → used to compare with every element
+- `count` → frequency of the current element
+- `count == 1` → unique element
+- `count >= 2` → duplicate element
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 1️⃣ Count Frequency of a Target Element
+
+### Problem
+
+Find how many times `2` occurs in:
+
+```java
+int[] arr = {2, 4, 2, 5, 2, 7};
+```
+
+### Code
+
+```java
+int[] arr = {2, 4, 2, 5, 2, 7};
+int target = 2;
+int count = 0;
+
+for(int i = 0; i < arr.length; i++) {
+    if(arr[i] == target) {
+        count++;
+    }
+}
+
+System.out.println("Occurrences = " + count);
+```
+
+### Output
+
+```text
+Occurrences = 3
+```
+
+### Complexity
+
+- Time: `O(n)`
+- Space: `O(1)`
+
+### 💡 Tip
+
+Whenever the question says **"How many times?"**, think:
+
+```java
+int count = 0;
+```
+
+Then:
+
+```java
+count++;
+```
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 2️⃣ Count Even Numbers in an Array
+
+### Array
+
+```java
+int[] arr = {3, 8, 12, 5, 7, 10};
+```
+
+### Code
+
+```java
+int count = 0;
+
+for(int i = 0; i < arr.length; i++) {
+    if(arr[i] % 2 == 0) {
+        count++;
+    }
+}
+
+System.out.println("Even Count = " + count);
+```
+
+### Output
+
+```text
+Even Count = 3
+```
+
+### Complexity
+
+- Time: `O(n)`
+- Space: `O(1)`
+
+### 💡 Remember
+
+```java
+arr[i] % 2 == 0
+```
+
+→ Even
+
+```java
+arr[i] % 2 != 0
+```
+
+→ Odd
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 3️⃣ Count Odd Numbers in an Array
+
+### Code
+
+```java
+int[] arr = {3, 8, 12, 5, 7, 10};
+int count = 0;
+
+for(int i = 0; i < arr.length; i++) {
+    if(arr[i] % 2 != 0) {
+        count++;
+    }
+}
+
+System.out.println("Odd Count = " + count);
+```
+
+### Output
+
+```text
+Odd Count = 3
+```
+
+### Complexity
+
+- Time: `O(n)`
+- Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 4️⃣ Find Largest Element That Appears More Than Once
+
+### Array
+
+```java
+int[] arr = {4, 7, 2, 7, 9, 4, 7};
+```
+
+Expected answer:
+
+```text
+Largest Duplicate = 7
+```
+
+### Code
+
+```java
+int[] arr = {4, 7, 2, 7, 9, 4, 7};
+
+int largest = Integer.MIN_VALUE;
+
+for(int i = 0; i < arr.length; i++) {
+
+    int count = 0;
+
+    for(int j = 0; j < arr.length; j++) {
+        if(arr[i] == arr[j]) {
+            count++;
+        }
+    }
+
+    if(count >= 2 && arr[i] > largest) {
+        largest = arr[i];
+    }
+}
+
+System.out.println("Largest Duplicate = " + largest);
+```
+
+### Output
+
+```text
+Largest Duplicate = 7
+```
+
+### 🧠 Important
+
+Two conditions are required:
+
+```java
+count >= 2
+```
+
+→ element is duplicated
+
+```java
+arr[i] > largest
+```
+
+→ find the largest duplicate
+
+### Complexity
+
+- Time: `O(n²)`
+- Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 5️⃣ Find Smallest Duplicate Element
+
+### Array
+
+```java
+int[] arr = {5, 3, 8, 3, 2, 5, 8, 8};
+```
+
+Expected:
+
+```text
+Smallest Duplicate = 3
+```
+
+### Code
+
+```java
+int[] arr = {5, 3, 8, 3, 2, 5, 8, 8};
+
+int smallest = Integer.MAX_VALUE;
+
+for(int i = 0; i < arr.length; i++) {
+
+    int count = 0;
+
+    for(int j = 0; j < arr.length; j++) {
+        if(arr[i] == arr[j]) {
+            count++;
+        }
+    }
+
+    if(count >= 2 && arr[i] < smallest) {
+        smallest = arr[i];
+    }
+}
+
+System.out.println("Smallest Duplicate = " + smallest);
+```
+
+### Output
+
+```text
+Smallest Duplicate = 3
+```
+
+### 🧠 Largest vs Smallest
+
+```text
+Largest:
+Integer.MIN_VALUE
+arr[i] > largest
+
+Smallest:
+Integer.MAX_VALUE
+arr[i] < smallest
+```
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 6️⃣ Find Frequency of the Largest Element
+
+### Array
+
+```java
+int[] arr = {4, 7, 2, 7, 9, 4, 7};
+```
+
+Expected:
+
+```text
+Largest = 9
+Frequency = 1
+```
+
+### Code
+
+```java
+int[] arr = {4, 7, 2, 7, 9, 4, 7};
+
+int largest = Integer.MIN_VALUE;
+
+for(int i = 0; i < arr.length; i++) {
+    if(arr[i] > largest) {
+        largest = arr[i];
+    }
+}
+
+int count = 0;
+
+for(int i = 0; i < arr.length; i++) {
+    if(arr[i] == largest) {
+        count++;
+    }
+}
+
+System.out.println("Largest = " + largest);
+System.out.println("Frequency = " + count);
+```
+
+### Complexity
+
+- Time: `O(n)`
+- Space: `O(1)`
+
+### 💡 Pattern
+
+This is a **two-pass approach**:
+
+```text
+Pass 1 → Find largest
+Pass 2 → Count largest
+```
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 7️⃣ Find Frequency of the Smallest Element
+
+### Array
+
+```java
+int[] arr = {5, 2, 8, 2, 3, 2, 9};
+```
+
+Expected:
+
+```text
+Smallest = 2
+Frequency = 3
+```
+
+### Code
+
+```java
+int[] arr = {5, 2, 8, 2, 3, 2, 9};
+
+int smallest = Integer.MAX_VALUE;
+
+for(int i = 0; i < arr.length; i++) {
+    if(arr[i] < smallest) {
+        smallest = arr[i];
+    }
+}
+
+int count = 0;
+
+for(int i = 0; i < arr.length; i++) {
+    if(arr[i] == smallest) {
+        count++;
+    }
+}
+
+System.out.println("Smallest = " + smallest);
+System.out.println("Frequency = " + count);
+```
+
+### Output
+
+```text
+Smallest = 2
+Frequency = 3
+```
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 8️⃣ Find Largest Element That Occurs Exactly Once
+
+### Array
+
+```java
+int[] arr = {4, 7, 2, 7, 9, 4, 6};
+```
+
+Unique elements:
+
+```text
+2, 9, 6
+```
+
+Largest unique = `9`
+
+### Code
+
+```java
+int[] arr = {4, 7, 2, 7, 9, 4, 6};
+
+int largest = Integer.MIN_VALUE;
+
+for(int i = 0; i < arr.length; i++) {
+
+    int count = 0;
+
+    for(int j = 0; j < arr.length; j++) {
+        if(arr[i] == arr[j]) {
+            count++;
+        }
+    }
+
+    if(count == 1 && arr[i] > largest) {
+        largest = arr[i];
+    }
+}
+
+System.out.println("Largest Unique = " + largest);
+```
+
+### Output
+
+```text
+Largest Unique = 9
+```
+
+### 🧠 Important
+
+```java
+count == 1
+```
+
+means:
+
+> This element occurs exactly once.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 9️⃣ Find Smallest Element That Occurs Exactly Once
+
+### Array
+
+```java
+int[] arr = {5, 3, 8, 3, 2, 5, 7};
+```
+
+Unique elements:
+
+```text
+8, 2, 7
+```
+
+Smallest = `2`
+
+### Code
+
+```java
+int[] arr = {5, 3, 8, 3, 2, 5, 7};
+
+int smallest = Integer.MAX_VALUE;
+
+for(int i = 0; i < arr.length; i++) {
+
+    int count = 0;
+
+    for(int j = 0; j < arr.length; j++) {
+
+        if(arr[i] == arr[j]) {
+            count++;
+        }
+    }
+
+    if(count == 1 && arr[i] < smallest) {
+        smallest = arr[i];
+    }
+}
+
+System.out.println("Smallest Unique = " + smallest);
+```
+
+### Output
+
+```text
+Smallest Unique = 2
+```
+
+### Complexity
+
+- Time: `O(n²)`
+- Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 🔟 Find the Most Frequent Element
+
+### Array
+
+```java
+int[] arr = {2, 5, 2, 8, 5, 2, 8};
+```
+
+Expected:
+
+```text
+Most Frequent = 2
+Max Frequency = 3
+```
+
+### Code
+
+```java
+int[] arr = {2, 5, 2, 8, 5, 2, 8};
+
+int maxFrequency = 0;
+int mostFrequent = 0;
+
+for(int i = 0; i < arr.length; i++) {
+
+    int count = 0;
+
+    for(int j = 0; j < arr.length; j++) {
+
+        if(arr[i] == arr[j]) {
+            count++;
+        }
+    }
+
+    if(count > maxFrequency) {
+        maxFrequency = count;
+        mostFrequent = arr[i];
+    }
+}
+
+System.out.println("Most Frequent = " + mostFrequent);
+System.out.println("Max Frequency = " + maxFrequency);
+```
+
+### Output
+
+```text
+Most Frequent = 2
+Max Frequency = 3
+```
+
+### 🧠 Variable Meaning
+
+This was one of the most important concepts from today's practice:
+
+```text
+count
+↓
+Frequency of the CURRENT element
+
+maxFrequency
+↓
+Highest frequency found so far
+
+mostFrequent
+↓
+Element having the highest frequency
+```
+
+### Complexity
+
+- Time: `O(n²)`
+- Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 🧠 MOST IMPORTANT PATTERNS FROM DAY 6
+
+## 1. Counting Pattern
+
+```java
+int count = 0;
+
+for(...) {
+    if(condition) {
+        count++;
+    }
+}
+```
+
+Use when the question asks:
+
+- How many?
+- Count occurrences
+- Count even/odd
+- Count positive/negative
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 2. Largest Pattern
+
+```java
+int largest = Integer.MIN_VALUE;
+
+if(arr[i] > largest) {
+    largest = arr[i];
+}
+```
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 3. Smallest Pattern
+
+```java
+int smallest = Integer.MAX_VALUE;
+
+if(arr[i] < smallest) {
+    smallest = arr[i];
+}
+```
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 4. Frequency Pattern
+
+```java
+for(int i = 0; i < arr.length; i++) {
+
+    int count = 0;
+
+    for(int j = 0; j < arr.length; j++) {
+
+        if(arr[i] == arr[j]) {
+            count++;
+        }
+    }
+}
+```
+
+### Memory trick:
+
+**Outer loop = WHICH element?**
+
+**Inner loop = HOW MANY?**
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 5. Duplicate Pattern
+
+```java
+if(count >= 2)
+```
+
+Means:
+
+> The element appears at least twice.
+
+`count > 1` is also equivalent.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 6. Unique Pattern
+
+```java
+if(count == 1)
+```
+
+Means:
+
+> The element appears exactly once.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# ⚠️ Common Mistakes to Avoid
+
+### Mistake 1 — Not resetting count
+
+❌ Wrong:
+
+```java
+int count = 0;
+
+for(int i = 0; i < arr.length; i++) {
+    ...
+}
+```
+
+when counting each element separately.
+
+✅ Correct:
+
+```java
+for(int i = 0; i < arr.length; i++) {
+    int count = 0;
+    ...
+}
+```
+
+### Mistake 2 — Comparing the wrong variables
+
+For most frequent:
+
+❌ Wrong:
+
+```java
+if(mostFrequent > maxFrequency)
+```
+
+✅ Correct:
+
+```java
+if(count > maxFrequency)
+```
+
+Because:
+
+```text
+count = frequency
+maxFrequency = frequency
+```
+
+### Mistake 3 — Updating only one variable
+
+For most frequent:
+
+```java
+if(count > maxFrequency) {
+    maxFrequency = count;
+    mostFrequent = arr[i];
+}
+```
+
+Both must be updated.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 🎯 Interview Tips
+
+When you see words like:
+
+| Question says | Think |
+|---|---|
+| Frequency | Count occurrences |
+| Duplicate | `count >= 2` |
+| Unique | `count == 1` |
+| Most frequent | Maximum frequency |
+| Least frequent | Minimum frequency |
+| Largest duplicate | Duplicate + maximum |
+| Smallest duplicate | Duplicate + minimum |
+| Largest unique | Unique + maximum |
+| Smallest unique | Unique + minimum |
+
+### ⭐ Very important distinction
+
+```text
+i
+```
+
+means **index**
+
+```text
+arr[i]
+```
+
+means **value**
+
+Example:
+
+```java
+arr[i] > largest
+```
+
+You are comparing the **value**.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 🚀 Day 6 Final Takeaway
+
+Today you learned how to combine:
+
+```text
+Arrays
+   ↓
+Loops
+   ↓
+Nested Loops
+   ↓
+Frequency Counting
+   ↓
+Duplicates / Unique Elements
+   ↓
+Maximum / Minimum
+```
+
+The biggest new concept today was:
+
+> **For every element, use another loop to find its frequency.**
+
+This nested-loop pattern is a foundation for many later DSA problems.
+
+### 🏆 Day 6 DSA Score
+
+**10 / 10 Problems Completed ✅**
+
+**Main skill:** Frequency + Nested Loops ⭐⭐⭐⭐⭐
+
+**Next major step:** Continue building array problem-solving skills before moving into more advanced DSA patterns.
+
+These notes are ready to paste into your GitHub repository. 🔥
