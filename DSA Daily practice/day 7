@@ -1,0 +1,496 @@
+# 💻 Day 7 DSA — Two Pointers & Array Patterns
+
+**Level:** Beginner to Interview Preparation  
+**Language:** Java  
+**Questions:** 10
+
+---
+
+## 📌 Q1. Pair Sum Using Two Pointers
+
+### 🎯 Problem
+Find whether a pair of numbers in a sorted array adds up to the target.
+
+### 💻 Code
+```java
+int arr[] = {1, 2, 4, 6, 8};
+int target = 10;
+
+int left = 0;
+int right = arr.length - 1;
+boolean found = false;
+
+while (left < right) {
+    int sum = arr[left] + arr[right];
+
+    if (sum == target) {
+        found = true;
+        break;
+    } else if (sum < target) {
+        left++;
+    } else {
+        right--;
+    }
+}
+
+System.out.println(found);
+```
+
+### Output
+```text
+true
+```
+
+### Dry Run
+- `1 + 8 = 9` → sum is small, move `left`.
+- `2 + 8 = 10` → target found.
+
+**Time:** O(n)  
+**Extra Space:** O(1)
+
+**Interview Tip:** This two-pointer approach works when the array is sorted.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 📌 Q2. Pair Sum with a Different Target
+
+### 🎯 Problem
+Find whether two numbers add up to `14`.
+
+### 💻 Code
+```java
+int arr[] = {2, 3, 5, 7, 11};
+int target = 14;
+
+int left = 0;
+int right = arr.length - 1;
+boolean found = false;
+
+while (left < right) {
+    int sum = arr[left] + arr[right];
+
+    if (sum == target) {
+        found = true;
+        break;
+    } else if (sum < target) {
+        left++;
+    } else {
+        right--;
+    }
+}
+
+System.out.println(found);
+```
+
+### Output
+```text
+true
+```
+
+### Dry Run
+`2 + 11 = 13` → move left.  
+`3 + 11 = 14` → target found.
+
+**Time:** O(n)  
+**Extra Space:** O(1)
+
+**Remember:** Small sum → move left forward. Large sum → move right backward.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 📌 Q3. Smallest Difference Between Adjacent Elements
+
+### 🎯 Problem
+Find the smallest difference between neighboring elements in a sorted array.
+
+### 💻 Code
+```java
+int arr[] = {1, 3, 7, 8, 12};
+
+int left = 0;
+int right = 1;
+int smallest = Integer.MAX_VALUE;
+
+while (right < arr.length) {
+    int difference = arr[right] - arr[left];
+
+    if (difference < smallest) {
+        smallest = difference;
+    }
+
+    left++;
+    right++;
+}
+
+System.out.println("Smallest Difference = " + smallest);
+```
+
+### Output
+```text
+Smallest Difference = 1
+```
+
+### Dry Run
+
+| Pair | Difference |
+|---|---:|
+| 1, 3 | 2 |
+| 3, 7 | 4 |
+| 7, 8 | 1 |
+| 8, 12 | 4 |
+
+The smallest difference is `1`.
+
+**Time:** O(n)  
+**Extra Space:** O(1)
+
+**Interview Tip:** This solution checks adjacent elements, not every possible pair.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 📌 Q4. Check Whether an Array Is a Palindrome
+
+### 🎯 Problem
+Check whether the array reads the same forward and backward.
+
+### 💻 Code
+```java
+int arr[] = {1, 2, 3, 2, 1};
+
+int left = 0;
+int right = arr.length - 1;
+boolean palindrome = true;
+
+while (left < right) {
+    if (arr[left] != arr[right]) {
+        palindrome = false;
+        break;
+    }
+
+    left++;
+    right--;
+}
+
+System.out.println(palindrome);
+```
+
+### Output
+```text
+true
+```
+
+### Dry Run
+- Compare `1` and `1` → match.
+- Compare `2` and `2` → match.
+- The pointers meet → palindrome.
+
+**Time:** O(n)  
+**Extra Space:** O(1)
+
+**Memory Trick:** Compare the outside elements, then move inward.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 📌 Q5. Remove Duplicates from a Sorted Array
+
+### 🎯 Problem
+Move unique elements to the beginning of the array and print them.
+
+### 💻 Code
+```java
+int arr[] = {1, 1, 2, 2, 3, 4, 4};
+
+int left = 0;
+int right = 1;
+
+while (right < arr.length) {
+    if (arr[right] != arr[left]) {
+        left++;
+        arr[left] = arr[right];
+    }
+
+    right++;
+}
+
+System.out.println("Unique elements:");
+
+for (int i = 0; i <= left; i++) {
+    System.out.print(arr[i] + " ");
+}
+```
+
+### Output
+```text
+Unique elements:
+1 2 3 4
+```
+
+### Dry Run
+- `left` points to the last unique element.
+- `right` searches for the next different element.
+- When a different element is found, move `left` forward and copy it.
+
+**Time:** O(n)  
+**Extra Space:** O(1)
+
+**Important:** This works because the array is sorted. It changes the original array.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 📌 Q6. Move All Zeroes to the End
+
+### 🎯 Problem
+Move all non-zero elements to the front while keeping their order, then fill the remaining positions with zeroes.
+
+### 💻 Code
+```java
+int arr[] = {0, 1, 0, 3, 12};
+
+int left = 0;
+int right = 0;
+
+while (right < arr.length) {
+    if (arr[right] != 0) {
+        arr[left] = arr[right];
+        left++;
+    }
+
+    right++;
+}
+
+for (int i = left; i < arr.length; i++) {
+    arr[i] = 0;
+}
+
+for (int i = 0; i < arr.length; i++) {
+    System.out.print(arr[i] + " ");
+}
+```
+
+### Output
+```text
+1 3 12 0 0
+```
+
+### Dry Run
+First loop places non-zero values at the front:
+
+`1 3 12 3 12`
+
+Second loop fills the remaining positions with zeroes:
+
+`1 3 12 0 0`
+
+**Time:** O(n)  
+**Extra Space:** O(1)
+
+**Common Mistake:** The first loop alone does not clear the old values at the end.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 📌 Q7. Reverse an Array In-Place
+
+### 🎯 Problem
+Reverse an array without creating another array.
+
+### 💻 Code
+```java
+int arr[] = {1, 2, 3, 4, 5};
+
+int left = 0;
+int right = arr.length - 1;
+
+while (left < right) {
+    int temp = arr[left];
+    arr[left] = arr[right];
+    arr[right] = temp;
+
+    left++;
+    right--;
+}
+
+System.out.print("Reverse = ");
+
+for (int i = 0; i < arr.length; i++) {
+    System.out.print(arr[i] + " ");
+}
+```
+
+### Output
+```text
+Reverse = 5 4 3 2 1
+```
+
+### Dry Run
+- Swap `1` and `5` → `5 2 3 4 1`
+- Swap `2` and `4` → `5 4 3 2 1`
+- Pointers meet at the middle.
+
+**Time:** O(n)  
+**Extra Space:** O(1)
+
+**Memory Trick:** Save one value in `temp` before swapping.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 📌 Q8. Check Whether Two Strings Are Anagrams
+
+### 🎯 Problem
+Two strings are anagrams if they contain the same characters with the same frequencies, in a different order.
+
+### 💻 Code
+```java
+import java.util.Arrays;
+
+public class AnagramCheck {
+    public static void main(String[] args) {
+        String s1 = "listen";
+        String s2 = "silent";
+
+        if (s1.length() != s2.length()) {
+            System.out.println("Not an Anagram");
+        } else {
+            char[] a = s1.toCharArray();
+            char[] b = s2.toCharArray();
+
+            Arrays.sort(a);
+            Arrays.sort(b);
+
+            if (Arrays.equals(a, b)) {
+                System.out.println("Anagram");
+            } else {
+                System.out.println("Not an Anagram");
+            }
+        }
+    }
+}
+```
+
+### Output
+```text
+Anagram
+```
+
+### Dry Run
+- `listen` → sorted characters: `eilnst`
+- `silent` → sorted characters: `eilnst`
+- Both sorted arrays match.
+
+**Time:** O(n log n)  
+**Extra Space:** O(n)
+
+**Important:** This version is case-sensitive and treats spaces as characters.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 📌 Q9. Two Sum — Return Indices
+
+### 🎯 Problem
+Find the indices of two different elements whose sum equals the target.
+
+### 💻 Code
+```java
+int arr[] = {2, 7, 11, 15};
+int target = 9;
+
+for (int i = 0; i < arr.length; i++) {
+    for (int j = i + 1; j < arr.length; j++) {
+        int sum = arr[i] + arr[j];
+
+        if (sum == target) {
+            System.out.println("Indices: " + i + ", " + j);
+        }
+    }
+}
+```
+
+### Output
+```text
+Indices: 0, 1
+```
+
+### Dry Run
+- `arr[0] + arr[1] = 2 + 7 = 9`
+- Target found → print indices `0, 1`.
+
+**Time:** O(n²)  
+**Extra Space:** O(1)
+
+**Interview Tip:** This nested-loop approach works for unsorted arrays. A HashMap can improve the usual Two Sum solution to O(n) expected time.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 📌 Q10. First Non-Repeating Element
+
+### 🎯 Problem
+Find the first element that appears exactly once.
+
+### 💻 Code
+```java
+int arr[] = {4, 5, 1, 2, 1, 4, 5};
+
+for (int i = 0; i < arr.length; i++) {
+    int count = 0;
+
+    for (int j = 0; j < arr.length; j++) {
+        if (arr[i] == arr[j]) {
+            count++;
+        }
+    }
+
+    if (count == 1) {
+        System.out.println(
+            "First non-repeating element: " + arr[i]
+        );
+        break;
+    }
+}
+```
+
+### Output
+```text
+First non-repeating element: 2
+```
+
+### Dry Run
+
+| Element | Frequency | Result |
+|---:|---:|---|
+| 4 | 2 | Repeating |
+| 5 | 2 | Repeating |
+| 1 | 2 | Repeating |
+| 2 | 1 | First non-repeating |
+
+When `count == 1`, print the element and stop with `break`.
+
+**Time:** O(n²)  
+**Extra Space:** O(1)
+
+**Common Mistake:** Reset `count = 0` inside the outer loop so each element gets a fresh count.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 🧠 Day 7 — Quick Revision
+
+| Pattern | Main idea | Time |
+|---|---|---|
+| Two pointers | Move pointers based on conditions | O(n) |
+| Adjacent difference | Compare neighboring elements | O(n) |
+| Palindrome array | Compare both ends | O(n) |
+| Remove duplicates | Keep unique values at the front | O(n) |
+| Move zeroes | Move non-zeroes, then fill zeroes | O(n) |
+| Reverse array | Swap opposite elements | O(n) |
+| Anagram | Sort and compare characters | O(n log n) |
+| Two Sum indices | Test pairs using nested loops | O(n²) |
+| First non-repeating | Count each element's frequency | O(n²) |
+
+## ⭐ Important Interview Lessons
+
+1. Use two pointers when the problem's conditions allow it.
+2. For pair sum using this two-pointer method, the array must be sorted.
+3. Reset counters inside the correct loop.
+4. Use `break` when you need to stop after finding the first answer.
+5. Understand the difference between an element's **value** and its **index**.
+6. Always test your code with a dry run before submitting it.
+
+**Day 7 DSA status: Completed — 10/10 questions.** 🎉
