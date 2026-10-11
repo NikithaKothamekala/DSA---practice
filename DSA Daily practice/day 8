@@ -1,0 +1,540 @@
+# 🧠 DSA — Day 8: String Programs in Java
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 1. <u>Reverse a String Without Using a Built-in Reverse Method</u>
+
+### 🎯 Concept
+Reverse a string by reading its characters from the last index to the first index.
+
+### 💻 Code
+```java
+package p4;
+
+public class ReverseAMethodWithoutUsingBuiltInVerse {
+    public static void main(String[] args) {
+        String word = "hello";
+        String reverse = "";
+
+        for (int i = word.length() - 1; i >= 0; i--) {
+            reverse = reverse + word.charAt(i);
+        }
+
+        System.out.println("Reverse String = " + reverse);
+    }
+}
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+### 📤 Output
+```text
+Reverse String = olleh
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+### 🔍 Explanation
+- `word.length() - 1` gives the last index.
+- `i--` moves backwards.
+- `word.charAt(i)` gets the current character.
+- `reverse = reverse + word.charAt(i)` adds the character to the result.
+
+### 🧪 Dry Run
+
+| Index | Character | Reverse |
+|---:|:---:|---|
+| 4 | o | o |
+| 3 | l | ol |
+| 2 | l | oll |
+| 1 | e | olle |
+| 0 | h | olleh |
+
+### ⏱️ Complexity
+- Time: O(n²) with repeated string concatenation in a loop.
+- Extra space: O(n).
+
+### 🧠 Memory Trick
+Start from the **last index** and move towards index `0`.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 2. <u>Count Vowels in a String</u>
+
+### 🎯 Concept
+Count the vowels `a`, `e`, `i`, `o`, and `u`.
+
+### 💻 Code
+```java
+package p4;
+
+public class CountVowelsInAString {
+    public static void main(String[] args) {
+        String word = "education";
+        int count = 0;
+
+        for (int i = 0; i < word.length(); i++) {
+            char ch = Character.toLowerCase(word.charAt(i));
+
+            if (ch == 'a' || ch == 'e' || ch == 'i'
+                    || ch == 'o' || ch == 'u') {
+                count++;
+            }
+        }
+
+        System.out.println("Count of Vowels = " + count);
+    }
+}
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+### 📤 Output
+```text
+Count of Vowels = 5
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+### 🔍 Explanation
+- Visit each character using a `for` loop.
+- `Character.toLowerCase()` allows uppercase vowels to be counted too.
+- `||` means OR: if any vowel condition matches, increase `count`.
+
+### ⏱️ Complexity
+- Time: O(n)
+- Extra space: O(1), excluding implementation details of string operations.
+
+### 🧠 Memory Trick
+Vowels are **A, E, I, O, U**.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 3. <u>Count Consonants in a String</u>
+
+### 🎯 Concept
+Count English letters that are not vowels. Ignore spaces, digits, and special characters.
+
+### 💻 Code
+```java
+package p4;
+
+public class CountConsonants {
+    public static void main(String[] args) {
+        String word = "hello world";
+        int count = 0;
+
+        for (int i = 0; i < word.length(); i++) {
+            char ch = Character.toLowerCase(word.charAt(i));
+
+            if (Character.isLetter(ch)
+                    && ch != 'a' && ch != 'e'
+                    && ch != 'i' && ch != 'o'
+                    && ch != 'u') {
+                count++;
+            }
+        }
+
+        System.out.println("Count of Consonants = " + count);
+    }
+}
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+### 📤 Output
+```text
+Count of Consonants = 7
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+### 🔍 Explanation
+- `Character.isLetter(ch)` checks whether the character is a letter.
+- The remaining conditions exclude vowels.
+- `&&` means all conditions must be true.
+
+### 🧠 Important Point
+Checking only that a character is not a vowel is not enough. A space or digit is also not a vowel, but it is not a consonant either.
+
+### ⏱️ Complexity
+- Time: O(n)
+- Extra space: O(1).
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 4. <u>Count Digits in a String</u>
+
+### 🎯 Concept
+Count numeric characters from `0` to `9` inside a string.
+
+### 💻 Code
+```java
+package p4;
+
+public class CountDigitsInAString {
+    public static void main(String[] args) {
+        String str = "java123 is fun45";
+        int count = 0;
+
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+
+            if (ch >= '0' && ch <= '9') {
+                count++;
+            }
+        }
+
+        System.out.println("Digits Count = " + count);
+    }
+}
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+### 📤 Output
+```text
+Digits Count = 5
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+### 🔍 Explanation
+- `ch >= '0'` checks that the character is at least `0`.
+- `ch <= '9'` checks that it is at most `9`.
+- Both conditions together identify digit characters.
+
+### ⏱️ Complexity
+- Time: O(n)
+- Extra space: O(1).
+
+### 🧠 Memory Trick
+For a character range, use **single quotes**: `'0'` and `'9'`.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 5. <u>Count Uppercase Letters in a String</u>
+
+### 🎯 Concept
+Count uppercase English letters from `A` to `Z`.
+
+### 💻 Code
+```java
+package p4;
+
+public class UppercaseLetters {
+    public static void main(String[] args) {
+        String str = "Java IS Fun123!";
+        int count = 0;
+
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+
+            if (ch >= 'A' && ch <= 'Z') {
+                count++;
+            }
+        }
+
+        System.out.println("UpperCase Letters Count = " + count);
+    }
+}
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+### 📤 Output
+```text
+UpperCase Letters Count = 4
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+### 🔍 Explanation
+- `'A'` is the first uppercase English letter.
+- `'Z'` is the last uppercase English letter.
+- The condition counts only uppercase letters.
+
+### ⏱️ Complexity
+- Time: O(n)
+- Extra space: O(1).
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 6. <u>Count Lowercase Letters in a String</u>
+
+### 🎯 Concept
+Count lowercase English letters from `a` to `z`.
+
+### 💻 Code
+```java
+package p4;
+
+public class LowerCaseLetters {
+    public static void main(String[] args) {
+        String str = "Java IS Fun123!";
+        int count = 0;
+
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+
+            if (ch >= 'a' && ch <= 'z') {
+                count++;
+            }
+        }
+
+        System.out.println("LowerCase Letters Count = " + count);
+    }
+}
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+### 📤 Output
+```text
+LowerCase Letters Count = 5
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+### 🔍 Explanation
+- `'a'` is the first lowercase English letter.
+- `'z'` is the last lowercase English letter.
+- Uppercase letters, numbers, spaces, and punctuation are ignored.
+
+### ⏱️ Complexity
+- Time: O(n)
+- Extra space: O(1).
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 7. <u>Count Spaces in a String</u>
+
+### 🎯 Concept
+Count the number of ordinary space characters in a string.
+
+### 💻 Code
+```java
+package p4;
+
+public class CountSpacesInString {
+    public static void main(String[] args) {
+        String str = "Java is fun to learn";
+        int count = 0;
+
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+
+            if (ch == ' ') {
+                count++;
+            }
+        }
+
+        System.out.println("Spaces Count = " + count);
+    }
+}
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+### 📤 Output
+```text
+Spaces Count = 4
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+### 🔍 Explanation
+- `ch == ' '` checks whether the current character is a space.
+- `count++` increases the count for each space.
+
+### ⏱️ Complexity
+- Time: O(n)
+- Extra space: O(1).
+
+### 🧠 Memory Trick
+Use `==` to compare a character with a single space: `' '`.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 8. <u>Count Special Characters in a String</u>
+
+### 🎯 Concept
+Count characters that are not letters, digits, or ordinary spaces.
+
+### 💻 Code
+```java
+package p4;
+
+public class SpecialCharactersInAString {
+    public static void main(String[] args) {
+        String str = "Java@123#Fun!";
+        int count = 0;
+
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+
+            if (!Character.isLetter(ch)
+                    && !Character.isDigit(ch)
+                    && ch != ' ') {
+                count++;
+            }
+        }
+
+        System.out.println("Special Characters Count = " + count);
+    }
+}
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+### 📤 Output
+```text
+Special Characters Count = 3
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+### 🔍 Explanation
+- `!Character.isLetter(ch)` means the character is not a letter.
+- `!Character.isDigit(ch)` means it is not a digit.
+- `ch != ' '` excludes spaces.
+- `&&` requires every condition to be true.
+
+### 🧠 Common Mistake
+Using `||` between these NOT conditions can cause letters and digits to be counted incorrectly. Use `&&`.
+
+### ⏱️ Complexity
+- Time: O(n)
+- Extra space: O(1).
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 9. <u>Count Words in a String</u>
+
+### 🎯 Concept
+If words are separated by single spaces, with no leading or trailing spaces, the number of words equals the number of spaces plus one.
+
+### 💻 Code
+```java
+package p4;
+
+public class CountWords {
+    public static void main(String[] args) {
+        String str = "Java is fun to learn";
+        int count = 0;
+
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+
+            if (ch == ' ') {
+                count++;
+            }
+        }
+
+        int words = count + 1;
+        System.out.println("Words Count = " + words);
+    }
+}
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+### 📤 Output
+```text
+Words Count = 5
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+### 🔍 Explanation
+- Count the spaces first.
+- Add one to get the word count.
+- This method assumes the string is non-empty and has no leading, trailing, or repeated spaces.
+
+### 🧠 Memory Trick
+**Words = Spaces + 1**
+
+### ⏱️ Complexity
+- Time: O(n)
+- Extra space: O(1).
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 10. <u>Remove Spaces from a String</u>
+
+### 🎯 Concept
+Create a new string by adding each character except ordinary spaces. Do not use `replace()`.
+
+### 💻 Code
+```java
+package p4;
+
+public class RemoveSpacesFromString {
+    public static void main(String[] args) {
+        String str = "Java is fun";
+        String result = "";
+
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+
+            if (ch != ' ') {
+                result = result + ch;
+            }
+        }
+
+        System.out.println(
+            "New String After Removing Spaces = " + result
+        );
+    }
+}
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+### 📤 Output
+```text
+New String After Removing Spaces = Javaisfun
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+### 🔍 Explanation
+- `result = ""` creates an empty string.
+- The loop visits every character.
+- `ch != ' '` skips spaces.
+- `result = result + ch` adds each non-space character to the new string.
+
+### 🧠 Common Mistake
+Use `result = result + ch`, not `result = result + str`. The variable `ch` represents one character; `str` represents the entire string.
+
+### ⏱️ Complexity
+- Time: O(n²) with repeated string concatenation.
+- Extra space: O(n).
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 🎯 Day 8 — Interview Revision
+
+## Important Java String Methods
+
+| Method | Purpose |
+|---|---|
+| `str.length()` | Returns the string length |
+| `str.charAt(i)` | Returns the character at index `i` |
+| `Character.isLetter(ch)` | Checks whether a character is a letter |
+| `Character.isDigit(ch)` | Checks whether a character is a digit |
+| `Character.toLowerCase(ch)` | Converts a character to lowercase |
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 🧠 Quick Memory Tricks
+
+1. **Reverse a string:** Start from the last index and decrement.
+2. **Vowels:** Check `a`, `e`, `i`, `o`, `u`.
+3. **Consonants:** Must be a letter and not a vowel.
+4. **Digits:** Check between `'0'` and `'9'`.
+5. **Uppercase:** Check between `'A'` and `'Z'`.
+6. **Lowercase:** Check between `'a'` and `'z'`.
+7. **Spaces:** Compare with `' '`.
+8. **Special characters:** Not a letter, not a digit, and not a space.
+9. **Words:** Spaces + 1, under the stated spacing assumptions.
+10. **Remove spaces:** Add a character only when `ch != ' '`.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## ✅ DSA Day 8 — Completion Checklist
+
+- [x] Reverse a String
+- [x] Count Vowels
+- [x] Count Consonants
+- [x] Count Digits
+- [x] Count Uppercase Letters
+- [x] Count Lowercase Letters
+- [x] Count Spaces
+- [x] Count Special Characters
+- [x] Count Words
+- [x] Remove Spaces
+
+**Status:** DSA Day 8 practice completed. Add these notes to your GitHub DSA repository under `Day-08-Strings.md`.
+
+**Next target:** DSA Day 9 — more string problems and character-frequency patterns. 🚀
