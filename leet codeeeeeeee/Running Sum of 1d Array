@@ -1,0 +1,240 @@
+# 🚀 LeetCode 1480 – Running Sum of 1d Array
+
+**Language:** Java  
+**Topic:** Array  
+**Pattern:** Prefix Sum  
+**Difficulty:** Easy  
+**Status:** ✅ Accepted
+
+---
+
+## 1. Problem Statement
+
+Given an integer array `nums`, return the running sum of the array.
+
+The running sum at index `i` is calculated by adding all elements from index `0` to index `i`.
+
+### Example
+
+**Input:**
+```java
+nums = [1, 2, 3, 4]
+```
+
+**Output:**
+```java
+[1, 3, 6, 10]
+```
+
+**Explanation:**
+- Index 0: 1
+- Index 1: 1 + 2 = 3
+- Index 2: 1 + 2 + 3 = 6
+- Index 3: 1 + 2 + 3 + 4 = 10
+
+---
+
+## 2. Java Code – Accepted Solution
+
+```java
+class Solution {
+    public int[] runningSum(int[] nums) {
+
+        int sum = 0;
+        int[] result = new int[nums.length];
+
+        for(int i = 0; i < nums.length; i++) {
+
+            sum += nums[i];
+            result[i] = sum;
+
+        }
+
+        return result;
+    }
+}
+```
+
+---
+
+## 3. Logic Explanation
+
+1. Initialize `sum = 0`.
+2. Create a new array `result` with the same length as `nums`.
+3. Traverse the original array using one `for` loop.
+4. Add the current element to `sum`.
+5. Store the updated sum in `result[i]`.
+6. Return the result array.
+
+### Important Lines
+
+**Line 1:**
+```java
+int sum = 0;
+```
+Stores the cumulative sum.
+
+**Line 2:**
+```java
+int[] result = new int[nums.length];
+```
+Creates an array to store the running sums.
+
+**Line 3:**
+```java
+sum += nums[i];
+```
+Adds the current element to the previous sum.
+
+Equivalent to:
+```java
+sum = sum + nums[i];
+```
+
+**Line 4:**
+```java
+result[i] = sum;
+```
+Stores the cumulative sum at the current index.
+
+---
+
+## 4. Dry Run
+
+**Input:**
+```java
+nums = [1, 2, 3, 4]
+```
+
+Initially:
+```java
+sum = 0
+result = [0, 0, 0, 0]
+```
+
+| Iteration | i | nums[i] | Previous Sum | New Sum | Result |
+|---|---:|---:|---:|---:|---|
+| 1 | 0 | 1 | 0 | 1 | [1,0,0,0] |
+| 2 | 1 | 2 | 1 | 3 | [1,3,0,0] |
+| 3 | 2 | 3 | 3 | 6 | [1,3,6,0] |
+| 4 | 3 | 4 | 6 | 10 | [1,3,6,10] |
+
+**Final Output:**
+```java
+[1, 3, 6, 10]
+```
+
+---
+
+## 5. Why Only One Loop?
+
+We need to process each element exactly once.
+
+For every element:
+1. Add it to the previous sum.
+2. Store the updated sum.
+
+A nested loop is unnecessary because we maintain the previous cumulative sum in the `sum` variable.
+
+---
+
+## 6. Time and Space Complexity
+
+| Complexity | Value | Explanation |
+|---|---|---|
+| Time | O(n) | Each element is visited once |
+| Auxiliary Space | O(1) | Only a few variables |
+| Output Space | O(n) | New result array |
+
+---
+
+## 7. Important DSA Concept – Prefix Sum
+
+Prefix Sum means storing the cumulative sum of elements up to each index.
+
+Example:
+
+```text
+Original Array: [2, 4, 6, 8]
+
+Prefix Sum:     [2, 6, 12, 20]
+```
+
+### Applications
+- Range sum queries
+- Subarray sum problems
+- Cumulative frequency
+- Efficient sum calculations
+
+---
+
+## 8. Common Mistakes
+
+❌ Using unnecessary nested loops.
+
+❌ Adding the same element multiple times.
+
+❌ Forgetting to initialize the result array.
+
+❌ Returning the original array instead of the result array.
+
+❌ Forgetting to store the updated sum at `result[i]`.
+
+---
+
+## 9. Interview Questions
+
+**Q1. What is a running sum?**
+
+The cumulative sum of all elements from the first index to the current index.
+
+**Q2. Why do we initialize sum to zero?**
+
+Because no elements have been added initially.
+
+**Q3. What does `sum += nums[i]` mean?**
+
+It adds the current array element to the existing sum.
+
+**Q4. Why do we use a result array?**
+
+To store all calculated running sums.
+
+**Q5. What is the time complexity?**
+
+O(n), because we traverse the array once.
+
+**Q6. What is Prefix Sum?**
+
+A technique that stores cumulative sums of array elements.
+
+---
+
+## 10. Key Takeaways 🧠
+
+- Array traversal
+- Cumulative addition
+- Creating and returning arrays
+- Prefix Sum pattern
+- Time complexity O(n)
+
+### Memory Trick
+
+**ADD → STORE → MOVE**
+
+Add current element → Store cumulative sum → Move to next index.
+
+---
+
+## 11. LeetCode Progress
+
+| Problem | Difficulty | Status |
+|---|---|---|
+| #1 Two Sum | Easy | ✅ Completed |
+| #1480 Running Sum | Easy | ✅ Accepted |
+
+**GitHub Commit Message:**
+
+`Added LeetCode 1480 - Running Sum of 1d Array using Java`
+
+**Next Goal:** Continue Easy Array problems before moving to Medium.
