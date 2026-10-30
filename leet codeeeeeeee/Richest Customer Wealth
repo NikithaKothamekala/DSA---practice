@@ -1,0 +1,329 @@
+# 🚀 LeetCode 1672 – Richest Customer Wealth
+
+**Language:** Java  
+**Topic:** Array  
+**Subtopic:** 2D Array  
+**Difficulty:** Easy  
+**Pattern:** Nested Loops + Maximum Element
+
+---
+
+## 1. Problem Statement
+
+You are given a 2D integer array `accounts`.
+
+- Each row represents one customer.
+- Each column represents one bank account.
+- Each element represents the money in that bank account.
+
+A customer's wealth is the total money in all their bank accounts.
+
+Return the maximum wealth among all customers.
+
+### Example 1
+
+**Input:**
+```java
+accounts = {{1, 2, 3}, {3, 2, 1}};
+```
+
+**Output:**
+```java
+6
+```
+
+**Explanation:**
+
+Customer 0 = 1 + 2 + 3 = 6
+
+Customer 1 = 3 + 2 + 1 = 6
+
+Maximum wealth = 6.
+
+### Example 2
+
+**Input:**
+```java
+accounts = {{1, 5}, {7, 3}, {3, 5}};
+```
+
+**Output:**
+```java
+10
+```
+
+**Explanation:**
+
+- Customer 0 = 1 + 5 = 6
+- Customer 1 = 7 + 3 = 10
+- Customer 2 = 3 + 5 = 8
+
+The richest customer has wealth 10.
+
+---
+
+## 2. Java Code – Solution
+
+```java
+class Solution {
+    public int maximumWealth(int[][] accounts) {
+
+        int largestSum = 0;
+
+        for(int i = 0; i < accounts.length; i++) {
+
+            int sum = 0;
+
+            for(int j = 0; j < accounts[i].length; j++) {
+                sum += accounts[i][j];
+            }
+
+            if(sum > largestSum) {
+                largestSum = sum;
+            }
+        }
+
+        return largestSum;
+    }
+}
+```
+
+---
+
+## 3. Logic Explanation
+
+**Step 1: Initialize maximum wealth**
+
+```java
+int largestSum = 0;
+```
+
+Stores the highest customer wealth found so far.
+
+**Step 2: Outer loop**
+
+```java
+for(int i = 0; i < accounts.length; i++)
+```
+
+Visits every customer (row).
+
+**Step 3: Initialize customer wealth**
+
+```java
+int sum = 0;
+```
+
+Stores the total wealth of the current customer.
+
+Important: Initialize `sum` inside the outer loop because every customer must have a fresh total.
+
+**Step 4: Inner loop**
+
+```java
+for(int j = 0; j < accounts[i].length; j++)
+```
+
+Visits every bank account belonging to the current customer.
+
+**Step 5: Calculate wealth**
+
+```java
+sum += accounts[i][j];
+```
+
+Adds the current bank balance to the customer's total wealth.
+
+Equivalent to:
+
+```java
+sum = sum + accounts[i][j];
+```
+
+**Step 6: Update maximum wealth**
+
+```java
+if(sum > largestSum) {
+    largestSum = sum;
+}
+```
+
+If the current customer's wealth is greater than the previous maximum, update the maximum.
+
+**Step 7: Return the answer**
+
+```java
+return largestSum;
+```
+
+Return the maximum wealth after checking all customers.
+
+---
+
+## 4. Understanding 2D Arrays
+
+Example:
+
+```java
+int[][] accounts = {
+    {2, 8, 7},
+    {7, 1, 3},
+    {1, 9, 5}
+};
+```
+
+Visual representation:
+
+| Customer / Row | Bank 0 | Bank 1 | Bank 2 |
+|---|---:|---:|---:|
+| Customer 0 | 2 | 8 | 7 |
+| Customer 1 | 7 | 1 | 3 |
+| Customer 2 | 1 | 9 | 5 |
+
+### Important syntax
+
+```java
+accounts[i]
+```
+Accesses an entire row.
+
+```java
+accounts[i][j]
+```
+Accesses one particular element.
+
+**Remember:**
+
+- `i` = Row / Customer
+- `j` = Column / Bank account
+
+---
+
+## 5. Dry Run
+
+**Input:**
+
+```java
+accounts = {
+    {2, 8, 7},
+    {7, 1, 3},
+    {1, 9, 5}
+};
+```
+
+Initially:
+
+```java
+largestSum = 0;
+```
+
+| Customer | Calculation | sum | largestSum |
+|---|---|---:|---:|
+| 0 | 2 + 8 + 7 | 17 | 17 |
+| 1 | 7 + 1 + 3 | 11 | 17 |
+| 2 | 1 + 9 + 5 | 15 | 17 |
+
+Final output:
+
+```java
+17
+```
+
+The first customer is the richest.
+
+---
+
+## 6. Why Do We Need Nested Loops?
+
+We have two dimensions:
+
+1. Rows represent customers.
+2. Columns represent bank accounts.
+
+The outer loop selects a customer.
+
+The inner loop calculates the total wealth of that customer.
+
+**Memory Shortcut:**
+
+Outer Loop = Customer
+
+Inner Loop = Bank Accounts
+
+---
+
+## 7. Time and Space Complexity
+
+Let:
+
+- `m` = Number of customers (rows)
+- `n` = Number of bank accounts per customer (columns)
+
+| Complexity | Value | Explanation |
+|---|---|---|
+| Time | O(m × n) | Visits every element |
+| Auxiliary Space | O(1) | Uses only two variables |
+
+No additional array or data structure is created.
+
+---
+
+## 8. Common Mistakes
+
+❌ Using `accounts[i]` instead of `accounts[i][j]` to access one balance.
+
+❌ Initializing `sum` outside the outer loop.
+
+❌ Comparing array rows instead of their calculated sums.
+
+❌ Returning inside the loops before checking all customers.
+
+❌ Returning `sum` instead of `largestSum`.
+
+❌ Forgetting to compare each customer's wealth with the maximum.
+
+---
+
+## 9. Important Java Concepts Learned
+
+| Concept | What I learned |
+|---|---|
+| 2D Arrays | Arrays containing rows and columns |
+| Nested Loops | Loop inside another loop |
+| Array Length | `accounts.length` |
+| Row Length | `accounts[i].length` |
+| Array Access | `accounts[i][j]` |
+| Variable Scope | A variable declared inside a block is limited to that block |
+| Maximum Value | Compare using an `if` condition |
+
+---
+
+## 10. Interview Questions
+
+**Q1. What is a 2D array?**
+
+An array containing rows and columns.
+
+**Q2. What does `accounts[i][j]` represent?**
+
+The balance of customer `i` in bank account `j`.
+
+**Q3. Why do we use nested loops?**
+
+To visit every customer and every bank account.
+
+**Q4. Why is `sum = 0` inside the outer loop?**
+
+Because every customer needs a separate wealth calculation.
+
+**Q5. Why do we return `largestSum`?**
+
+It stores the maximum wealth found among all customers.
+
+**Q6. What is the time complexity?**
+
+O(m × n).
+
+---
+
+## 11
