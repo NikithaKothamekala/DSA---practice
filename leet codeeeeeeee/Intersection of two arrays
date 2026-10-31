@@ -1,0 +1,343 @@
+# 🔗 LeetCode 349 – Intersection of Two Arrays
+
+**Difficulty:** Easy  
+**Language:** Java  
+**Topics:** Arrays, HashSet, Intersection  
+**Status:** ✅ Solved
+
+---
+
+## 1. Problem Statement
+
+Given two integer arrays `nums1` and `nums2`, return an array containing their common elements.
+
+**Important rules:**
+- Every element in the result must be unique.
+- The result can be returned in any order.
+
+### Example 1
+
+```java
+Input: nums1 = [1, 2, 2, 1]
+       nums2 = [2, 2]
+
+Output: [2]
+```
+
+### Example 2
+
+```java
+Input: nums1 = [4, 9, 5]
+       nums2 = [9, 4, 9, 8, 4]
+
+Output: [4, 9]
+```
+
+---
+
+## 2. What is Intersection?
+
+Intersection means finding the common elements between two collections.
+
+Example:
+
+```java
+Array 1 = [1, 2, 3, 4]
+Array 2 = [3, 4, 5, 6]
+
+Intersection = [3, 4]
+```
+
+Only `3` and `4` appear in both arrays.
+
+---
+
+## 3. Java Solution – HashSet Approach
+
+```java
+import java.util.HashSet;
+
+class Solution {
+    public int[] intersection(int[] nums1, int[] nums2) {
+
+        HashSet<Integer> set = new HashSet<>();
+        HashSet<Integer> result = new HashSet<>();
+
+        // Store first array elements
+        for(int i = 0; i < nums1.length; i++) {
+            set.add(nums1[i]);
+        }
+
+        // Find common elements
+        for(int i = 0; i < nums2.length; i++) {
+            if(set.contains(nums2[i])) {
+                result.add(nums2[i]);
+            }
+        }
+
+        // Convert HashSet into int[]
+        int[] ans = new int[result.size()];
+        int index = 0;
+
+        for(int num : result) {
+            ans[index] = num;
+            index++;
+        }
+
+        return ans;
+    }
+}
+```
+
+---
+
+## 4. Logic Explanation
+
+### Step 1: Create two HashSets
+
+```java
+HashSet<Integer> set = new HashSet<>();
+HashSet<Integer> result = new HashSet<>();
+```
+
+- `set`: Stores unique elements from the first array.
+- `result`: Stores common elements without duplicates.
+
+### Step 2: Store first array elements
+
+```java
+for(int i = 0; i < nums1.length; i++) {
+    set.add(nums1[i]);
+}
+```
+
+Adds all elements of `nums1` into the first HashSet.
+
+### Step 3: Find common elements
+
+```java
+for(int i = 0; i < nums2.length; i++) {
+    if(set.contains(nums2[i])) {
+        result.add(nums2[i]);
+    }
+}
+```
+
+- `contains()` checks whether the element exists in the first HashSet.
+- `add()` stores the common element in the result HashSet.
+
+### Step 4: Create an answer array
+
+```java
+int[] ans = new int[result.size()];
+int index = 0;
+```
+
+Creates an integer array with enough space for all unique common elements.
+
+### Step 5: Convert HashSet into array
+
+```java
+for(int num : result) {
+    ans[index] = num;
+    index++;
+}
+```
+
+The enhanced for loop visits every element in `result` and copies it into `ans`.
+
+### Step 6: Return the answer
+
+```java
+return ans;
+```
+
+---
+
+## 5. Dry Run
+
+Input:
+
+```java
+nums1 = [1, 2, 3, 4]
+nums2 = [3, 4, 5, 6]
+```
+
+**Step 1: Store nums1**
+
+```text
+set = [1, 2, 3, 4]
+```
+
+**Step 2: Check nums2**
+
+| Current number | Exists in set? | Action |
+|---|---|---|
+| 3 | Yes | Add 3 to result |
+| 4 | Yes | Add 4 to result |
+| 5 | No | Ignore |
+| 6 | No | Ignore |
+
+After checking:
+
+```text
+result = [3, 4]
+```
+
+**Step 3: Convert into array**
+
+```java
+ans = [3, 4]
+```
+
+**Final Output:**
+
+```java
+[3, 4]
+```
+
+---
+
+## 6. Why Do We Use Two HashSets?
+
+### First HashSet – set
+
+```java
+HashSet<Integer> set = new HashSet<>();
+```
+
+- Stores unique elements from the first array.
+- Helps check whether an element exists.
+
+### Second HashSet – result
+
+```java
+HashSet<Integer> result = new HashSet<>();
+```
+
+- Stores only common elements.
+- Prevents duplicate elements in the final answer.
+
+**Memory trick:**
+
+`set` = Store first array.
+
+`result` = Store common elements.
+
+---
+
+## 7. What Is an Enhanced For Loop?
+
+Syntax:
+
+```java
+for(dataType variable : collection) {
+    // Statements
+}
+```
+
+Example:
+
+```java
+int[] arr = {10, 20, 30};
+
+for(int num : arr) {
+    System.out.println(num);
+}
+```
+
+Output:
+
+```text
+10
+20
+30
+```
+
+In our problem:
+
+```java
+for(int num : result) {
+    ans[index] = num;
+    index++;
+}
+```
+
+It visits every element in the HashSet.
+
+---
+
+## 8. Time and Space Complexity
+
+Let:
+- `n` = length of `nums1`
+- `m` = length of `nums2`
+- `k` = number of unique common elements
+
+| Complexity | Value | Explanation |
+|---|---|---|
+| Time | O(n + m) average | Insertions and lookups in HashSet |
+| Auxiliary Space | O(n + k) | Two HashSets |
+| Answer array | O(k) | Stores final intersection |
+
+---
+
+## 9. Important Interview Questions
+
+**Q1. What is the intersection of two arrays?**
+
+The elements that are present in both arrays.
+
+**Q2. Why do we use HashSet?**
+
+To store unique elements and check membership efficiently.
+
+**Q3. Why do we use two HashSets?**
+
+One stores the first array's unique elements; the second stores common elements.
+
+**Q4. What does `contains()` do?**
+
+Checks whether an element exists in the HashSet.
+
+**Q5. What does `result.add()` do?**
+
+Adds a common element without creating duplicates.
+
+**Q6. Why do we convert HashSet into an array?**
+
+Because the LeetCode method expects an `int[]` return value.
+
+**Q7. What is the average time complexity?**
+
+O(n + m).
+
+**Q8. Does HashSet maintain insertion order?**
+
+No, HashSet does not guarantee insertion order.
+
+---
+
+## 10. Key Takeaways 🧠
+
+- Intersection means common elements.
+- HashSet stores unique elements.
+- `add()` inserts an element.
+- `contains()` checks whether an element exists.
+- Two HashSets help separate stored elements and common elements.
+- Enhanced for loop can traverse a collection.
+- Convert HashSet into an array when an array is required as output.
+
+---
+
+## 11. GitHub Progress
+
+**LeetCode #349 – Intersection of Two Arrays**
+
+- Problem understood: ✅
+- HashSet logic: ✅
+- Java implementation: ✅
+- Dry run: ✅
+- Interview concepts: ✅
+
+**Next learning goal:** Continue practising HashSet and array problems.
