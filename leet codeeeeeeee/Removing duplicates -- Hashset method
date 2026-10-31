@@ -1,0 +1,321 @@
+Absolutely, NIKS! 😎 First, we'll make HashSet notes separately, and at the end we'll compare HashSet with the nested-loop approach.
+
+These are ready for your GitHub DSA notes.
+
+# 🔍 LeetCode 217 – Contains Duplicate (HashSet Approach)
+
+**Difficulty:** Easy\
+**Language:** Java\
+**Topics:** Arrays, HashSet, Duplicate Detection\
+**Status:** ✅ Logic completed
+
+---
+
+## 1. Problem Statement
+
+Given an integer array `nums`, return `true` if any value appears at least twice.
+
+Return `false` if every element is distinct.
+
+### Examples
+
+**Example 1**
+
+```
+Input:  nums = [1, 2, 3, 1]
+Output: true
+```
+
+**Example 2**
+
+```
+Input:  nums = [1, 2, 3, 4]
+Output: false
+```
+
+---
+
+## 2. What is HashSet?
+
+`HashSet` is a Java collection that stores **unique elements**.
+
+Important properties:
+
+1. Does not allow duplicate elements.
+2. Does not guarantee insertion order.
+3. Allows one `null` element.
+4. Provides average O(1) time for `add()` and `contains()`.
+
+### Example
+
+```
+import java.util.HashSet;
+
+class Main {
+    public static void main(String[] args) {
+
+        HashSet<Integer> set = new HashSet<>();
+
+        set.add(10);
+        set.add(20);
+        set.add(10);
+
+        System.out.println(set);
+    }
+}
+```
+
+Possible output:
+
+```
+[20, 10]
+```
+
+The second `10` is not added because it already exists.
+
+---
+
+## 3. Important HashSet Methods
+
+| Method            | Purpose                                      |
+| ----------------- | -------------------------------------------- |
+| `add(value)`      | Adds an element if it is not already present |
+| `contains(value)` | Checks whether an element exists             |
+| `remove(value)`   | Removes an element                           |
+| `size()`          | Returns the number of unique elements        |
+| `isEmpty()`       | Checks whether the HashSet is empty          |
+| `clear()`         | Removes all elements                         |
+
+### Example
+
+```
+HashSet<Integer> set = new HashSet<>();
+
+set.add(5);
+set.add(10);
+
+System.out.println(set.contains(5));  // true
+System.out.println(set.contains(20)); // false
+System.out.println(set.size());       // 2
+```
+
+---
+
+## 4. Java Solution – HashSet Approach
+
+```
+import java.util.HashSet;
+
+class Solution {
+    public boolean containsDuplicate(int[] nums) {
+
+        HashSet<Integer> set = new HashSet<>();
+
+        for(int i = 0; i < nums.length; i++) {
+
+            if(set.contains(nums[i])) {
+                return true;
+            }
+
+            set.add(nums[i]);
+        }
+
+        return false;
+    }
+}
+```
+
+---
+
+## 5. Logic Explanation – Step by Step
+
+**Step 1: Import HashSet**
+
+```
+import java.util.HashSet;
+```
+
+Imports the HashSet class from Java Collections.
+
+**Step 2: Create HashSet**
+
+```
+HashSet<Integer> set = new HashSet<>();
+```
+
+Creates an empty HashSet to store previously visited numbers.
+
+**Step 3: Traverse the array**
+
+```
+for(int i = 0; i < nums.length; i++)
+```
+
+Visits every array element one by one.
+
+**Step 4: Check for duplicate**
+
+```
+if(set.contains(nums[i])) {
+    return true;
+}
+```
+
+If the current number is already present, a duplicate exists.
+
+**Step 5: Add the number**
+
+```
+set.add(nums[i]);
+```
+
+If the number is not present, add it to the HashSet.
+
+**Step 6: Return false**
+
+```
+return false;
+```
+
+If the loop finishes, no duplicate was found.
+
+---
+
+## 6. Dry Run
+
+Input:
+
+```
+nums = [1, 2, 3, 1]
+```
+
+Initially:
+
+```
+set = []
+```
+
+| Step | Current number | Already exists? | Action      | HashSet   |
+| ---- | -------------- | --------------- | ----------- | --------- |
+| 1    | 1              | No              | Add 1       | [1]       |
+| 2    | 2              | No              | Add 2       | [1, 2]    |
+| 3    | 3              | No              | Add 3       | [1, 2, 3] |
+| 4    | 1              | Yes             | Return true | [1, 2, 3] |
+
+**Final Output: `true`**
+
+The program stops immediately when it finds the duplicate.
+
+---
+
+## 7. Why Check Before Adding?
+
+Important code:
+
+```
+if(set.contains(nums[i])) {
+    return true;
+}
+
+set.add(nums[i]);
+```
+
+We check first because we need to know whether the number appeared earlier.
+
+If it already exists, we return `true`.
+
+Otherwise, we add it.
+
+**Memory trick:**
+
+CHECK → DUPLICATE? → RETURN TRUE\
+NOT DUPLICATE → ADD TO SET
+
+---
+
+## 8. Time and Space Complexity
+
+| Complexity      | Value        | Explanation                                              |
+| --------------- | ------------ | -------------------------------------------------------- |
+| Time            | O(n) average | One array traversal; HashSet operations are average O(1) |
+| Auxiliary Space | O(n)         | HashSet may store all array elements                     |
+
+**Important:** HashSet operations have O(1) average time, not a guaranteed O(1) worst-case time.
+
+---
+
+## 9. Important Interview Questions
+
+**Q1. What is HashSet in Java?**
+
+HashSet is a collection that stores unique elements and does not allow duplicates.
+
+**Q2. Does HashSet allow duplicate values?**
+
+No. Duplicate elements are not added.
+
+**Q3. What does `contains()` do?**
+
+It checks whether an element is already present.
+
+**Q4. What does `add()` do?**
+
+It adds an element if it is not already present.
+
+**Q5. Why do we check before adding?**
+
+To detect whether the current number appeared earlier.
+
+**Q6. What is the average time complexity of HashSet `contains()`?**
+
+O(1).
+
+**Q7. What is the space complexity of this solution?**
+
+O(n), because the HashSet can store up to n unique elements.
+
+**Q8. Why return true immediately?**
+
+Because finding even one duplicate is enough to answer the problem.
+
+---
+
+## 10. Compare Both Approaches
+
+| Feature          | Nested Loops            | HashSet                 |
+| ---------------- | ----------------------- | ----------------------- |
+| Technique        | Compare every pair      | Store visited elements  |
+| Time complexity  | O(n²)                   | O(n) average            |
+| Auxiliary space  | O(1)                    | O(n)                    |
+| Early stopping   | Yes, if duplicate found | Yes, if duplicate found |
+| Extra collection | Not required            | HashSet                 |
+| Performance      | Slower for large arrays | Generally faster        |
+
+### Which approach is better?
+
+**HashSet is generally better** for this problem because it reduces average time complexity from O(n²) to O(n).
+
+However, nested loops use less extra memory.
+
+---
+
+## 11. Key Takeaways 🧠
+
+- HashSet stores unique elements.
+- `contains()` checks whether an element exists.
+- `add()` inserts an element.
+- Check before adding to detect duplicates.
+- Average lookup and insertion time is O(1).
+- HashSet approach takes O(n) average time and O(n) extra space.
+- Learn brute force first, then optimize.
+
+---
+
+**GitHub Progress:** LeetCode #217 – Contains Duplicate
+
+- Brute Force: ✅ Accepted
+- HashSet: ✅ Optimized logic completed
+
+**Next goal:** Practice more problems involving HashSet and frequency counting.
+
+NIKS's learning checkpoint: You now understand why HashSet is useful—not just how to write its syntax. 🥷
