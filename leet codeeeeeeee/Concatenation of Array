@@ -1,0 +1,325 @@
+# 🚀 LeetCode 1929 – Concatenation of Array
+
+**Language:** Java  
+**Topic:** Array  
+**Difficulty:** Easy  
+**Pattern:** Array Traversal + Copying  
+**Status:** ✅ Independently Recalled
+
+---
+
+## 1. Problem Statement
+
+Given an integer array `nums` of length `n`, create an array `ans` of length `2n`.
+
+The first half of `ans` should contain the original array, and the second half should contain the original array again.
+
+### Example 1
+
+**Input:**
+```java
+nums = [1, 2, 1]
+```
+
+**Output:**
+```java
+[1, 2, 1, 1, 2, 1]
+```
+
+**Explanation:**
+
+The original array is copied twice.
+
+### Example 2
+
+**Input:**
+```java
+nums = [5, 8]
+```
+
+**Output:**
+```java
+[5, 8, 5, 8]
+```
+
+---
+
+## 2. Java Code – Accepted Logic
+
+```java
+class Solution {
+    public int[] getConcatenation(int[] nums) {
+
+        int[] ans = new int[nums.length * 2];
+
+        for(int i = 0; i < nums.length; i++) {
+
+            ans[i] = nums[i];
+
+            ans[i + nums.length] = nums[i];
+        }
+
+        return ans;
+    }
+}
+```
+
+---
+
+## 3. Logic Explanation
+
+**Step 1: Create a new array**
+
+```java
+int[] ans = new int[nums.length * 2];
+```
+
+If the original array has 3 elements, the new array needs 6 positions.
+
+Formula:
+
+`New array length = Original array length × 2`
+
+**Step 2: Traverse the original array**
+
+```java
+for(int i = 0; i < nums.length; i++)
+```
+
+Visits every element of the original array.
+
+**Step 3: Copy into the first half**
+
+```java
+ans[i] = nums[i];
+```
+
+Copies the element into the same index.
+
+**Step 4: Copy into the second half**
+
+```java
+ans[i + nums.length] = nums[i];
+```
+
+Copies the same element into the corresponding position in the second half.
+
+**Step 5: Return the result**
+
+```java
+return ans;
+```
+
+Returns the completed array.
+
+---
+
+## 4. Understanding Array Indexing
+
+Input:
+
+```java
+nums = [1, 2, 1]
+```
+
+Original indexes:
+
+| Index | Value |
+|---:|---:|
+| 0 | 1 |
+| 1 | 2 |
+| 2 | 1 |
+
+New array indexes:
+
+| Original index (i) | First half | Second half |
+|---:|---:|---:|
+| 0 | ans[0] | ans[3] |
+| 1 | ans[1] | ans[4] |
+| 2 | ans[2] | ans[5] |
+
+### Important Formula
+
+`Second half index = i + nums.length`
+
+---
+
+## 5. Complete Dry Run
+
+**Input:**
+
+```java
+nums = [1, 2, 1]
+```
+
+Initially:
+
+```java
+ans = [0, 0, 0, 0, 0, 0]
+```
+
+### Iteration 1 – i = 0
+
+```java
+ans[0] = nums[0];
+ans[3] = nums[0];
+```
+
+Result:
+
+`[1, 0, 0, 1, 0, 0]`
+
+### Iteration 2 – i = 1
+
+```java
+ans[1] = nums[1];
+ans[4] = nums[1];
+```
+
+Result:
+
+`[1, 2, 0, 1, 2, 0]`
+
+### Iteration 3 – i = 2
+
+```java
+ans[2] = nums[2];
+ans[5] = nums[2];
+```
+
+Result:
+
+`[1, 2, 1, 1, 2, 1]`
+
+**Final Output:**
+
+```java
+[1, 2, 1, 1, 2, 1]
+```
+
+---
+
+## 6. Time and Space Complexity
+
+| Complexity | Value | Explanation |
+|---|---|---|
+| Time | O(n) | One loop visits every original element |
+| Space | O(n) | Creates a new array of size 2n |
+
+---
+
+## 7. Common Mistakes
+
+❌ Using `ans.length = nums.length * 2` to create an array.
+
+Correct:
+```java
+int[] ans = new int[nums.length * 2];
+```
+
+❌ Using `==` instead of `=`.
+
+Correct:
+```java
+ans[i] = nums[i];
+```
+
+❌ Using `i + 1` for the second half.
+
+Correct:
+```java
+ans[i + nums.length] = nums[i];
+```
+
+❌ Returning the original array instead of `ans`.
+
+❌ Forgetting to return the array after the loop.
+
+---
+
+## 8. Important Java Concepts Learned
+
+| Concept | Explanation |
+|---|---|
+| Array declaration | Creating an integer array |
+| `new int[]` | Allocating array memory |
+| `.length` | Getting array length |
+| Array indexing | Accessing elements using indexes |
+| For loop | Traversing an array |
+| Assignment `=` | Copying values |
+| Return `int[]` | Returning an integer array |
+
+---
+
+## 9. Interview Questions
+
+**Q1. What is concatenation of an array?**
+
+Combining an array with itself in this problem.
+
+**Q2. Why do we multiply the length by 2?**
+
+Because the new array contains two copies of the original array.
+
+**Q3. Why do we use `i + nums.length`?**
+
+To access the corresponding index in the second half.
+
+**Q4. What does `ans[i] = nums[i]` do?**
+
+Copies an element from the original array into the first half.
+
+**Q5. What is the time complexity?**
+
+O(n).
+
+**Q6. Can we solve this using one loop?**
+
+Yes. Each iteration copies one element into two positions.
+
+---
+
+## 10. Key Takeaways 🧠
+
+- Array creation
+- Array copying
+- Array indexing
+- Array traversal
+- Understanding array length
+- Returning arrays
+- Time and space complexity
+
+### Memory Shortcut
+
+**CREATE → LOOP → COPY TWICE → RETURN**
+
+---
+
+## 11. My Learning Achievement 🏆
+
+I initially struggled with:
+- Declaring a new array.
+- Understanding array length.
+- Finding the second-half index.
+- Returning an array.
+
+After practising with hints, I successfully rewrote the complete solution from memory.
+
+**Achievement:** Independently recalled the complete Java solution.
+
+---
+
+## 12. LeetCode Progress
+
+| Problem | Difficulty | Status |
+|---|---|---|
+| #1 Two Sum | Easy | ✅ Completed |
+| #1480 Running Sum | Easy | ✅ Completed |
+| #1672 Richest Customer Wealth | Easy | ✅ Code corrected |
+| #1929 Concatenation of Array | Easy | ✅ Independently recalled |
+
+**GitHub Commit Message:**
+
+`Added LeetCode 1929 - Concatenation of Array using Java`
+
+**Next Goal:** Continue Easy Array problems and improve independent coding skills.
